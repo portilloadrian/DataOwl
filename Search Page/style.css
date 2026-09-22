@@ -1,0 +1,222 @@
+/* Search Page Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: rgba(0, 0, 0, 0.9);
+  background-color: #37404e;
+  /* Matches Profile Page theme (kind of) */
+  min-height: 100vh;
+}
+
+/* Top Navigation Header */
+header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #8ba4b5;
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  position: relative;
+  z-index: 10;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logo-img {
+  height: 38px;
+  width: auto;
+  border-radius: 6px;
+  display: block;
+}
+
+/* Main Content Area */
+main {
+  padding: 24px;
+}
+
+/* Search Combobox: compact by default, expands on focus to fit dropdown content */
+.search-combobox {
+  position: relative;
+  width: 250px;
+  transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.search-combobox:focus-within,
+.search-combobox.open {
+  width: 380px;
+}
+
+/* Input Bar */
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  background-color: #f0f4f8;
+  border: 1.5px solid #627282;
+  border-radius: 12px;
+  padding: 6px 12px;
+  gap: 8px;
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-combobox:focus-within .search-input-wrapper,
+.search-combobox.open .search-input-wrapper {
+  background-color: #ffffff;
+  border-color: #424fa5;
+  box-shadow: 0 0 0 1px #424fa5;
+}
+
+.search-input-wrapper .search-icon {
+  color: #424fa5;
+  flex-shrink: 0;
+}
+
+.search-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 15px;
+  color: #191919;
+  width: 100%;
+}
+
+.search-input::placeholder {
+  color: #64748b;
+}
+
+/* Dropdown Container */
+.search-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #c8d5df;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(30, 41, 59, 0.18);
+  padding: 12px 0;
+  display: none;
+  /* Revealed via :focus-within or .open */
+  z-index: 1000;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* Show dropdown when combobox has .open or is focused */
+.search-combobox.open .search-dropdown,
+.search-combobox:focus-within .search-dropdown {
+  display: block;
+}
+
+/* Dropdown Section Header */
+.dropdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 16px 8px;
+}
+
+.dropdown-header .header-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.dropdown-header .clear-btn {
+  background: none;
+  border: none;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.dropdown-header .clear-btn:hover {
+  text-decoration: underline;
+  color: #424fa5;
+}
+
+.section-divider {
+  margin-top: 14px;
+  padding-bottom: 4px;
+}
+
+/* Recent People Avatar Carousel */
+.recent-people-row {
+  display: flex;
+  gap: 12px;
+  padding: 8px 16px;
+  overflow-x: auto;
+}
+
+.person-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 68px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.person-item .avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 6px;
+  background-color: #d8e2ea;
+}
+
+.person-item .person-name {
+  font-size: 13px;
+  color: #1e293b;
+  text-align: center;
+  line-height: 1.25;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* List Items (History & Suggestions) */
+.query-list {
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+}
+
+.query-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.query-item:hover {
+  background-color: #edf3f8;
+}
+
+.query-icon {
+  color: #424fa5;
+  flex-shrink: 0;
+}
+
+.query-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1e293b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -1,0 +1,142 @@
+<!-- JUST AN EXAMPLE OF THE SEARCH BAR, WILL REPLACE WITH ACTUAL HOMEPAGE'S SEARCH BAR -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search - DataOwls</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header>
+    <a href="#" class="logo-link" title="DataOwls Home">
+      <img src="dataowls-logo.jpg" alt="DataOwls Logo" class="logo-img">
+    </a>
+
+    <!-- Search Combobox placed beside logo -->
+    <div class="search-combobox" id="searchCombobox">
+      <!-- Top Search Input -->
+      <div class="search-input-wrapper">
+        <svg class="search-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+          stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" class="search-input" placeholder="I'm looking for..." aria-label="Search"
+          aria-expanded="false" aria-controls="searchDropdown" />
+      </div>
+
+      <!-- Floating Dropdown Box -->
+      <div class="search-dropdown" id="searchDropdown" role="listbox">
+
+        <!-- Recent Section Header -->
+        <div class="dropdown-header">
+          <span class="header-title">Recent</span>
+          <button type="button" class="clear-btn">Clear all</button>
+        </div>
+
+        <!-- Horizontal People Avatars -->
+        <div class="recent-people-row">
+          <a href="#" class="person-item">
+            <img src="https://via.placeholder.com/52" alt="Jan Rebolledo" class="avatar" />
+            <span class="person-name">Jan Rebolle...</span>
+          </a>
+          <a href="#" class="person-item">
+            <img src="https://via.placeholder.com/52" alt="Kai Cheng" class="avatar" />
+            <span class="person-name">Kai (Kyle) Cheng, ..</span>
+          </a>
+          <a href="#" class="person-item">
+            <img src="https://via.placeholder.com/52" alt="Steven Nguyen" class="avatar" />
+            <span class="person-name">Steven Nguyen</span>
+          </a>
+          <a href="#" class="person-item">
+            <img src="https://via.placeholder.com/52" alt="Sehaj Singh" class="avatar" />
+            <span class="person-name">Sehaj Singh</span>
+          </a>
+        </div>
+
+        <!-- Recent History Searches -->
+        <ul class="query-list recent-queries">
+          <li class="query-item">
+            <svg class="query-icon clock-icon" viewBox="0 0 24 24" width="18" height="18" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span class="query-text">anthropic new claude model</span>
+          </li>
+          <li class="query-item">
+            <svg class="query-icon clock-icon" viewBox="0 0 24 24" width="18" height="18" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span class="query-text">a</span>
+          </li>
+        </ul>
+
+        <!-- Suggested Searches Header -->
+        <div class="dropdown-header section-divider">
+          <span class="header-title">Try searching for</span>
+        </div>
+
+        <!-- Suggested Search Queries -->
+        <ul class="query-list suggested-queries">
+          <li class="query-item">
+            <svg class="query-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <span class="query-text">doordash nyc settlement</span>
+          </li>
+          <li class="query-item">
+            <svg class="query-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <span class="query-text">anthropic new claude model</span>
+          </li>
+          <li class="query-item">
+            <svg class="query-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <span class="query-text">meta muse ai</span>
+          </li>
+          <li class="query-item">
+            <svg class="query-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <span class="query-text">nasdaq record high</span>
+          </li>
+          <li class="query-item">
+            <svg class="query-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <span class="query-text">fat bear week</span>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Content / future search results will live here -->
+  </main>
+
+</body>
+
+</html>
