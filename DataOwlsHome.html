@@ -6,36 +6,90 @@
     <title>DataOwls</title>
 
     <style>
+
         /* Home page */
         body {
             text-align: center;
             font-family: Arial, sans-serif;
-            margin-top: 50px;
+            margin: 0;
             background-color: #1E293B;
             color: white;
         }
+
+
+        /* Landing page header */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            background: rgb(32, 32, 32);
+            border-bottom: 1px solid var(--border);
+        }
+
+        :root {
+            --border: #555;
+        }
+
+        .site-header__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            min-height: 4rem;
+        }
+
 
         /* Main DATA OWLS logo */
         .title {
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 70px;
+            font-size: 40px;
             font-weight: bold;
         }
 
         .title img {
-            width: 100px;
+            width: 55px;
             height: auto;
             margin: 0 5px;
         }
 
+
+        /* Navigation links */
+        .navigation {
+            display: flex;
+            align-items: center;
+        }
+
+        .navigation a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .navigation a:hover {
+            text-decoration: underline;
+        }
+
+
         /* Login / Sign Up */
         .login-button {
-            position: absolute;
-            top: 30px;
-            right: 40px;
+            padding: 8px 15px;
         }
+
+
+        /* Main page content */
+        .main-content {
+            padding-top: 50px;
+        }
+
+
+        /* Tagline */
+        .tagline {
+            font-size: 18px;
+        }
+
 
         /* Search */
         .search-box {
@@ -47,25 +101,8 @@
             padding: 10px;
         }
 
-        /* Navigation links */
-        .navigation {
-            margin-top: 30px;
-            margin-bottom: 20px;
-        }
 
-        .navigation a {
-        color: white;
-        text-decoration: none;
-        margin: 0 20px;
-        font-size: 18px;
-        font-weight: bold;
-        }
-
-        .navigation a:hover {
-        text-decoration: underline;
-        }
-
-        /* DATA GALLERY */
+        /* Featured Stories */
         .posts-section {
             margin-top: 40px;
         }
@@ -76,6 +113,7 @@
             gap: 30px;
             flex-wrap: wrap;
         }
+
 
         /* Individual post */
         .post {
@@ -89,8 +127,7 @@
         }
 
 
-
-        /* Graph/image from user*/
+        /* Graph/image from user */
         .graph {
             height: 140px;
             border: 1px solid white;
@@ -111,6 +148,7 @@
             font-size: 14px;
         }
 
+
         /* Upload section */
         .upload-box {
             width: 450px;
@@ -123,160 +161,194 @@
             margin: 20px;
         }
 
+
         /* Footer */
         .footer {
-        margin-top: 50px;
-        padding: 20px;
-        font-size: 14px;
-}
+            margin-top: 50px;
+            padding: 20px;
+            font-size: 14px;
+        }
 
     </style>
 
 </head>
 
+
 <body>
 
-    <!-- Login / Sign Up button -->
-    <button class="login-button">
-        Login / Sign Up Get Started
-    </button>
+
+    <!-- Landing Page Header -->
+    <header class="site-header">
+
+        <div class="site-header__inner">
+
+            <!-- DataOwls Logo -->
+            <div class="title">
+
+                DATA
+
+                <img src="dataowls-logo.jpg" alt="Owl Logo">
+
+                WLS
+
+            </div>
 
 
-    <!-- Main title section -->
-    <div class="title">
+            <!-- Navigation -->
+            <nav class="navigation">
 
-        DATA
-        <!-- Owl logo -->
-        <img src="dataowls-logo.jpg" alt="Owl Logo">
-        WLS
+                <a href="#">Explore Stories</a>
 
-    </div>
+                <a href="#">Discover</a>
 
-    <p class="tagline">
-        Upload data. Create visuals. Share insights
-    </p>
+            </nav>
 
-    <!-- Navigation -->
-    <div class="navigation">
 
-    <a href="#">Explore Stories</a>
+            <!-- Login / Sign Up -->
+            <button class="login-button">
+                Login / Sign Up
+            </button>
 
-    <a href="#">Discover</a>
+        </div>
 
-    </div>
+    </header>
 
-    <!-- Search -->
-    <div class="search-box">
 
-        <input
-            type="text"
-            placeholder="Search users or pictures..."
-        >
-        <button>
-            Search
-        </button>
+    <!-- Main Page Content -->
+    <main class="main-content">
 
-    </div>
 
-            <!-- Featured Stories -->
-            <div class="posts-section">
+        <!-- Tagline -->
+        <p class="tagline">
+            Upload data. Create visuals. Share insights
+        </p>
 
-                <h2>FEATURED STORIES</h2>
+
+        <!-- Search -->
+        <div class="search-box">
+
+            <input
+                type="text"
+                placeholder="Search users or pictures..."
+            >
+
+            <button>
+                Search
+            </button>
+
+        </div>
+
+
+        <!-- Featured Stories -->
+        <div class="posts-section">
+
+            <h2>FEATURED STORIES</h2>
 
             <div class="posts">
 
-            <!-- Post 1 -->
-            <div class="post">
 
-                <div class="username">
-                    @user1_data
+                <!-- Post 1 -->
+                <div class="post">
+
+                    <div class="username">
+                        @user1_data
+                    </div>
+
+                    <div class="graph">
+                        GRAPH
+                    </div>
+
+                    <div class="post-title">
+                        Population Growth
+                    </div>
+
+                    <div class="post-info">
+                        1,245 views &nbsp; likes 32
+                    </div>
+
                 </div>
 
-                <div class="graph">
-                    GRAPH
+
+                <!-- Post 2 -->
+                <div class="post">
+
+                    <div class="username">
+                        @user2_stats
+                    </div>
+
+                    <div class="graph">
+                        GRAPH
+                    </div>
+
+                    <div class="post-title">
+                        Monthly Expenses
+                    </div>
+
+                    <div class="post-info">
+                        982 views &nbsp; likes 27
+                    </div>
+
                 </div>
 
-                <div class="post-title">
-                    Population Growth
-                </div>
 
-                <div class="post-info">
-                     1,245 views &nbsp; likes 32
+                <!-- Post 3 -->
+                <div class="post">
+
+                    <div class="username">
+                        @user3_visuals
+                    </div>
+
+                    <div class="graph">
+                        IMAGE
+                    </div>
+
+                    <div class="post-title">
+                        Favorite Foods
+                    </div>
+
+                    <div class="post-info">
+                        756 views &nbsp; likes 19
+                    </div>
+
                 </div>
 
             </div>
 
-            <!-- Post 2 -->
-            <div class="post">
-
-                <div class="username">
-                    @user2_stats
-                </div>
-
-                <div class="graph">
-                    GRAPH
-                </div>
-
-                <div class="post-title">
-                    Monthly Expenses
-                </div>
-
-                <div class="post-info">
-                     982 views &nbsp; likes 27
-                </div>
-
-            </div>
-
-            <!-- Post 3 -->
-            <div class="post">
-
-                <div class="username">
-                    @user3_visuals
-                </div>
-
-                <div class="graph">
-                    IMAGE
-                </div>
-
-                <div class="post-title">
-                    Favorite Foods
-                </div>
-
-                <div class="post-info">
-                     756 views &nbsp; likes 19
-                </div>
-            </div>
         </div>
-    </div>
 
 
-    <!-- Upload section -->
-    <div class="upload-box">
+        <!-- Upload section -->
+        <div class="upload-box">
 
-        <h2>Upload Your Data</h2>
+            <h2>Upload Your Data</h2>
 
-        <p>
-            Upload a picture or data file to get started.
-        </p>
+            <p>
+                Upload a picture or data file to get started.
+            </p>
 
-        <input
-            type="file"
-            accept="image/*,.csv,.xlsx,.json"
-        >
-        <br>
-        
-        <button>
-            Upload
-        </button>
+            <input
+                type="file"
+                accept="image/*,.csv,.xlsx,.json"
+            >
 
-    </div>
+            <br>
+
+            <button>
+                Upload
+            </button>
+
+        </div>
+
+
+    </main>
+
 
     <!-- Footer -->
     <div class="footer">
         © 2026 DataOwls
     </div>
 
+
 </body>
 
 </html>
-
