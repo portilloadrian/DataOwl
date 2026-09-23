@@ -1,240 +1,189 @@
 <!DOCTYPE html>
-<html>
+<html >
 
 <head>
 
     <title>DataOwls</title>
-
-    <style>
-        /* Home page */
-        body {
-            text-align: center;
-            font-family: Arial, sans-serif;
-            margin-top: 50px;
-            background-color: #1E293B;
-            color: white;
-        }
-
-        /* Main DATA OWLS logo */
-        .title {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 70px;
-            font-weight: bold;
-        }
-
-        .title img {
-            width: 100px;
-            height: auto;
-            margin: 0 5px;
-        }
-
-        /* Login / Sign Up */
-        .login-button {
-            position: absolute;
-            top: 30px;
-            right: 40px;
-        }
-
-        /* Search */
-        .search-box {
-            margin-top: 40px;
-        }
-
-        .search-box input {
-            width: 400px;
-            padding: 10px;
-        }
-
-        /* DATA GALLERY */
-        .posts-section {
-            margin-top: 40px;
-        }
-
-        .posts {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-
-        /* Individual post */
-        .post {
-            width: 220px;
-            text-align: left;
-        }
-
-        .username {
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        /* Graph/image from user*/
-        .graph {
-            height: 140px;
-            border: 1px solid white;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            margin-bottom: 10px;
-        }
-
-        .post-title {
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .post-info {
-            font-size: 14px;
-        }
-
-        /* Upload section */
-        .upload-box {
-            width: 450px;
-            margin: 50px auto;
-            padding: 30px;
-            border: 1px solid white;
-        }
-
-        .upload-box input {
-            margin: 20px;
-        }
-
-    </style>
+    <link rel="stylesheet" href="home.css">
 
 </head>
 
+
 <body>
 
-    <!-- Login / Sign Up button -->
-    <button class="login-button">
-        Login / Sign Up
-    </button>
 
+    <!-- Landing Page Header -->
+    <header class="site-header">
 
-    <!-- Main title section -->
-    <div class="title">
+        <div class="site-header__inner">
 
-        DATA
-        <!-- Owl logo -->
-        <img src="dataowls-logo.jpg" alt="Owl Logo">
-        WLS
+            <!-- DataOwls Logo -->
+            <div class="title">
 
-    </div>
+                DATA
 
+                <img src="dataowls-logo.jpg" alt="Owl Logo">
 
-    <!-- Search -->
-    <div class="search-box">
-
-        <input
-            type="text"
-            placeholder="Search users or pictures..."
-        >
-        <button>
-            Search
-        </button>
-
-    </div>
-
-
-    <!-- Explore Data -->
-    <div class="posts-section">
-
-        <h2>DATA GALLERY</h2>
-
-        <div class="posts">
-
-            <!-- Post 1 -->
-            <div class="post">
-
-                <div class="username">
-                    @user1_data
-                </div>
-
-                <div class="graph">
-                    GRAPH
-                </div>
-
-                <div class="post-title">
-                    Population Growth
-                </div>
-
-                <div class="post-info">
-                     1,245 views &nbsp; likes 32
-                </div>
+                WLS
 
             </div>
 
-            <!-- Post 2 -->
-            <div class="post">
 
-                <div class="username">
-                    @user2_stats
-                </div>
+            <!-- Navigation -->
+            <nav class="navigation">
 
-                <div class="graph">
-                    GRAPH
-                </div>
+                <a href="#">Explore Stories</a>
 
-                <div class="post-title">
-                    Monthly Expenses
-                </div>
+                <a href="#">Discover</a>
 
-                <div class="post-info">
-                     982 views &nbsp; likes 27
-                </div>
+            </nav>
 
-            </div>
 
-            <!-- Post 3 -->
-            <div class="post">
+            <!-- Login / Sign Up -->
+            <button class="login-button">
+                Login / Sign Up
+            </button>
 
-                <div class="username">
-                    @user3_visuals
-                </div>
-
-                <div class="graph">
-                    IMAGE
-                </div>
-
-                <div class="post-title">
-                    Favorite Foods
-                </div>
-
-                <div class="post-info">
-                     756 views &nbsp; likes 19
-                </div>
-            </div>
         </div>
-    </div>
+
+    </header>
 
 
-    <!-- Upload section -->
-    <div class="upload-box">
+    <!-- Main Page Content -->
+    <main class="main-content">
 
-        <h2>Upload Your Data</h2>
 
-        <p>
-            Upload a picture or data file to get started.
+        <!-- Tagline -->
+        <p class="tagline">
+            Upload data. Create visuals. Share insights
         </p>
 
-        <input
-            type="file"
-            accept="image/*,.csv,.xlsx,.json"
-        >
-        <br>
-        
-        <button>
-            Upload
-        </button>
 
+        <!-- Search -->
+        <div class="search-box">
+
+            <input
+                type="text"
+                placeholder="Search users or pictures..."
+            >
+
+            <button>
+                Search
+            </button>
+
+        </div>
+
+
+        <!-- Featured Stories -->
+        <div class="posts-section">
+
+            <h2>FEATURED STORIES</h2>
+
+            <div class="posts">
+
+
+                <!-- Post 1 -->
+                <div class="post">
+
+                    <div class="username">
+                        @user1_data
+                    </div>
+
+                    <div class="graph">
+                        GRAPH
+                    </div>
+
+                    <div class="post-title">
+                        Population Growth
+                    </div>
+
+                    <div class="post-info">
+                        1,245 views &nbsp; likes 32
+                    </div>
+
+                </div>
+
+
+                <!-- Post 2 -->
+                <div class="post">
+
+                    <div class="username">
+                        @user2_stats
+                    </div>
+
+                    <div class="graph">
+                        GRAPH
+                    </div>
+
+                    <div class="post-title">
+                        Monthly Expenses
+                    </div>
+
+                    <div class="post-info">
+                        982 views &nbsp; likes 27
+                    </div>
+
+                </div>
+
+
+                <!-- Post 3 -->
+                <div class="post">
+
+                    <div class="username">
+                        @user3_visuals
+                    </div>
+
+                    <div class="graph">
+                        IMAGE
+                    </div>
+
+                    <div class="post-title">
+                        Favorite Foods
+                    </div>
+
+                    <div class="post-info">
+                        756 views &nbsp; likes 19
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Upload section -->
+        <div class="upload-box">
+
+            <h2>Upload Your Data</h2>
+
+            <p>
+                Upload a picture or data file to get started.
+            </p>
+
+            <input
+                type="file"
+                accept="image/*,.csv,.xlsx,.json"
+            >
+
+            <br>
+
+            <button>
+                Upload
+            </button>
+
+        </div>
+
+
+    </main>
+
+
+    <!-- Footer -->
+    <div class="footer">
+        © 2026 DataOwls
     </div>
 
 
 </body>
 
 </html>
-
