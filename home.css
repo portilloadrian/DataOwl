@@ -206,7 +206,8 @@ body {
 /* Recent People Avatar Strip */
 .recent-people-row {
   display: flex;
-  gap: 12px;
+  justify-content: center;
+  gap: 14px;
   padding: 8px 16px;
   overflow-x: auto;
 }
