@@ -103,15 +103,10 @@ body {
 
 .search-combobox {
   position: relative;
-  width: 320px;
+  width: 460px;
+  max-width: 90vw;
   margin: 36px auto 0;
-  transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   text-align: left;
-}
-
-.search-combobox:focus-within,
-.search-combobox.open {
-  width: 440px;
 }
 
 /* Search Input Bar */
