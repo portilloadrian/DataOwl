@@ -1,0 +1,13 @@
+{
+  "name": "dataowls",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A social platform for data storytelling.",
+  "workspaces": ["client", "server"],
+  "scripts": {
+    "dev": "npm run dev --workspace client & npm run dev --workspace server",
+    "build": "npm run build --workspace client",
+    "test": "npm run test --workspace client && npm run test --workspace server",
+    "lint": "npm run lint --workspace client && npm run lint --workspace server"
+  }
+}
