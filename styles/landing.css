@@ -103,12 +103,14 @@ body {
     justify-content: center;
     gap: 30px;
     flex-wrap: wrap;
+    max-width: 750px;
+    margin: 0 auto;
 }
 
 /* Individual post */
 .post {
     width: 220px;
-    text-align: left;
+    text-align: center;
 }
 
 .username {
@@ -140,9 +142,9 @@ body {
 
 /* Upload section */
 .upload-box {
-    width: 450px;
-    margin: 50px auto;
-    padding: 30px;
+    width: 500px;
+    margin: 40px auto;
+    padding: 15px 20px;
     border: 1px solid var(--secondary-color);
     background-color: var(--surface);
 }
