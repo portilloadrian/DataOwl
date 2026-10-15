@@ -1,0 +1,84 @@
+body{
+    background-color:#9EB3C2;
+}
+
+.logoText{
+    
+    margin: 0;
+    padding: 0;
+
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    font-size: 20px;
+    color: #424fa5;
+    font-weight: bolder;
+}   
+
+.profile-info{
+    margin-top: 1rem;
+    
+    
+}
+
+.Dataset-content{
+    margin-top: 1rem;
+}
+
+.screen-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.profilePic{
+    width: 60px;
+
+}
+
+.Dataset-content {
+    display: flex;
+    margin-top: 240px;
+    gap: 180px;
+}
+
+.Datasets img {
+    width: 60px;
+    height: 60px;
+}
+
+.side-container{
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+}
+
+.data-table {
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    table-layout: fixed;
+    
+}
+
+.data-table td{
+    position: relative;
+    text-align: center;
+    width: 33.33%;
+    padding: 96px;
+    border: 1px solid black;
+}
+
+.post-icons {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    margin: 0;
+    width: 20px;
+    height: 20px;
+}
