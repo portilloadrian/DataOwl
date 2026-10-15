@@ -1,0 +1,61 @@
+@font-face {
+    font-family: "Bricolage Grotesque";
+    src: url("../assets/fonts/BricolageGrotesque-Regular.ttf")
+        format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Bricolage Grotesque";
+    src: url("../assets/fonts/BricolageGrotesque-Bold.ttf")
+        format("truetype");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "DM Sans";
+    src: url("../assets/fonts/DMSans-Regular.ttf") format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "DM Sans";
+    src: url("../assets/fonts/DMSans-Medium.ttf") format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "DM Sans";
+    src: url("../assets/fonts/DMSans-Bold.ttf") format("truetype");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "Fraunces";
+    src: url("../assets/fonts/Fraunces-Regular.ttf") format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Fraunces";
+    src: url("../assets/fonts/Fraunces-Semibold.ttf") format("truetype");
+    font-weight: 600;
+}
+
+:root {
+    --text: #20252B; /* Use this color for all MAIN writing */
+    --bg: #F7F4ED; /* Use this for all backgrounds*/
+    --surface: #FFFFFF; /* Flex neutral color */
+    /* Use these other colors as needed or add more 
+        but we should keep the consistency of the writing, background 
+        and main surface
+    */
+    --primary-color: #E8755F; 
+    --secondary-color: #6F8FA3;
+    --highlight-color: #D6A64F;
+    --muted-color: #68727A;
+
+    --font-brand: "Bricolage Grotesque", sans-serif;
+    --font-body: "DM Sans", sans-serif;
+    --font-editorial: "Fraunces", serif;
+}
