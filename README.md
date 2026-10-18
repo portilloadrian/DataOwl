@@ -4,6 +4,18 @@ DataOwls is a social platform for data storytelling. Users upload datasets, turn
 
 The product goal is simple: make data easier to understand by pairing visual evidence with context and a clear point of view.
 
+## How to run
+
+Requires Node.js 20+.
+
+```bash
+npm install
+npm run dev --workspace client   # http://localhost:5173
+npm run build --workspace client # production build into dist/
+```
+
+Pages must be opened through the Vite dev server (or `npx vite preview` after a build). Opening the HTML files directly from disk will not load the JavaScript modules.
+
 ## Project status
 
 The repository is currently moving from a static HTML/CSS prototype to a React and Express application. The existing prototype files are being retained temporarily while their useful design work is migrated into the new `client/` application.
