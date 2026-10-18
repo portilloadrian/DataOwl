@@ -44,12 +44,94 @@ body {
 }
 /* Main DATA OWLS logo */
 .title {
-    display: flex;
+     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 0px;
     font-size: 2rem;
     font-weight: bold;
     font-family: var(--font-brand);
+    color: var(--text);}
+
+/* Owl image used as the letter D */
+.logo-owl {
+    height: 50px;
+    width: 50px;
+    object-fit: contain;
+    display: block;
+    margin-right: -5px;
+}
+
+.logo-text {
+    font-family: var(--font-editorial);
+    font-weight: 600;
+}
+
+.title {
+    display: inline-flex;
+    align-items: center;
+    cursor: default;
+}
+
+/* Prepare each letter for animation */
+.logo-owl,
+.logo-letter {
+    display: inline-block;
+}
+
+/* Animate the entire logo in a snake-like wave */
+.title:hover .logo-owl {
+    animation: snake-bounce 0.55s ease both;
+    animation-delay: 0s;
+}
+
+.title:hover .logo-letter:nth-of-type(1) {
+    animation: snake-bounce 0.55s ease both;
+    animation-delay: 0.07s;
+}
+
+.title:hover .logo-letter:nth-of-type(2) {
+    animation: snake-bounce 0.55s ease both;
+    animation-delay: 0.14s;
+}
+
+.title:hover .logo-letter:nth-of-type(3) {
+    animation: snake-bounce 0.55s ease both;
+    animation-delay: 0.21s;
+}
+
+.title:hover .logo-letter:nth-of-type(4) {
+    animation: snake-bounce 0.55s ease both;
+    animation-delay: 0.28s;
+}
+
+.title:hover .logo-letter:nth-of-type(5) {
+    animation: snake-bounce 0.55s ease both;
+    animation-delay: 0.35s;
+}
+
+.title:hover .logo-letter:nth-of-type(6) {
+    animation: snake-bounce 0.55s ease both;
+    animation-delay: 0.42s;
+}
+
+.title:hover .logo-letter:nth-of-type(7) {
+    animation: snake-bounce 0.55s ease both;
+    animation-delay: 0.49s;
+}
+
+@keyframes snake-bounce {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    35% {
+        transform: translateY(-9px) rotate(-5deg);
+    }
+
+    65% {
+        transform: translateY(2px) rotate(4deg);
+    }
 }
 
 /* Login / Sign Up */
@@ -103,12 +185,14 @@ body {
     justify-content: center;
     gap: 30px;
     flex-wrap: wrap;
+    max-width: 750px;
+    margin: 0 auto;
 }
 
 /* Individual post */
 .post {
     width: 220px;
-    text-align: left;
+    text-align: center;
 }
 
 .username {
@@ -120,12 +204,29 @@ body {
 .graph {
     height: 140px;
     border: 1px solid var(--secondary-color);
+    border-radius: 24px; /* Rounded, pillow-like corners */
+    overflow: hidden;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
     margin-bottom: 10px;
+
+    /* Smooth animation */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    /* Keep the hover effect above nearby elements */
+    position: relative;
+
+    cursor: pointer;
+}
+
+/* Enlarge the image or graph on hover */
+.graph:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    z-index: 1;
 }
 
 .post-title {
@@ -140,13 +241,90 @@ body {
 
 /* Upload section */
 .upload-box {
-    width: 450px;
-    margin: 50px auto;
-    padding: 30px;
-    border: 1px solid var(--secondary-color);
+    width: 500px;
+    max-width: calc(100% - 40px);
+    margin: 40px auto;
+    padding: 32px 20px;
+    border: 2px dashed #D9D5CC;
+    border-radius: 16px;
     background-color: var(--surface);
+    text-align: center;
+    box-sizing: border-box;
+
+    transition: background 0.25s ease,
+                border-color 0.25s ease,
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+}
+
+/* Hover effect */
+.upload-box:hover {
+    background-color: #FFF8F5;
+    border-color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(32, 37, 43, 0.08);
 }
 
 .upload-box input {
     margin: 20px;
+}
+
+/* Upload content layout */
+.upload-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* Cloud upload icon */
+.upload-icon {
+    color: var(--primary-color);
+    margin-bottom: 12px;
+    transition: transform 0.25s ease;
+}
+
+.upload-box:hover .upload-icon {
+    transform: translateY(-3px);
+}
+
+/* Cloud upload image */
+.upload-icon {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: block;
+    margin-bottom: 12px;
+    transition: transform 0.25s ease;
+}
+
+
+/* Heading */
+.upload-content h3 {
+    font-family: var(--font-brand);
+    color: var(--text);
+    margin: 0 0 8px;
+}
+
+/* Supporting text */
+.upload-content p {
+    font-family: var(--font-body);
+    color: var(--muted-color);
+    margin: 0 0 20px;
+}
+
+/* Orange Choose file button */
+.upload-button {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background-color: var(--primary-color);
+    color: white;
+    font-family: var(--font-body);
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.upload-box:hover .upload-button {
+    background-color: #D9634E;
 }
