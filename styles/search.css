@@ -2,9 +2,9 @@
 
 .search-combobox {
     position: relative;
-    width: 460px;
+    width: 560px;
     max-width: 90vw;
-    margin: 36px auto 0;
+    margin: 30px auto 0;
     text-align: left;
 }
 
@@ -13,17 +13,19 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 8px 12px;
+    padding: 13px 16px;
     background-color: var(--surface);
     border: 1.5px solid var(--muted-color);
-    border-radius: 12px;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(32, 37, 43, 0.07);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .search-combobox:focus-within .search-input-wrapper,
 .search-combobox.open .search-input-wrapper {
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px var(--primary-color);
+    box-shadow: 0 0 0 2px var(--primary-color), 0 10px 26px rgba(32, 37, 43, 0.1);
+    transform: translateY(-1px);
 }
 
 .search-input-wrapper .search-icon {
@@ -37,7 +39,7 @@
     background: transparent;
     outline: none;
     font-family: var(--font-body);
-    font-size: 15px;
+    font-size: 16px;
     color: var(--text);
 }
 

@@ -24,7 +24,7 @@ body {
     align-items: center;
     justify-content: space-between;
     gap: 20px;
-    max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -51,7 +51,8 @@ body {
     font-size: 2rem;
     font-weight: bold;
     font-family: var(--font-brand);
-    color: var(--text);}
+    color: var(--text);
+}
 
 /* Owl image used as the letter D */
 .logo-owl {
@@ -147,20 +148,222 @@ body {
 }
 
 .auth-acts button,
+.auth-acts a,
 .search-box button,
 .upload-box button {
+    display: inline-block;
     padding: 10px 16px;
     border: 0;
     border-radius: 4px;
     background-color: var(--primary-color);
     color: var(--surface);
+    text-decoration: none;
     cursor: pointer;
 }
 
-.auth-acts button:hover,
 .search-box button:hover,
 .upload-box button:hover {
     background-color: var(--highlight-color);
+}
+
+/* Darken account buttons subtly on hover instead of shifting them to gold. */
+.auth-acts a:not(.profile-link) {
+    transition: filter 150ms ease;
+}
+
+.auth-acts a:not(.profile-link):hover {
+    filter: brightness(0.92);
+}
+
+/* Neutral circular profile control with a standard user outline. */
+.auth-acts .profile-link {
+    display: grid;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    place-items: center;
+    border: 1px solid var(--secondary-color);
+    border-radius: 50%;
+    background: var(--surface);
+    color: var(--text);
+}
+
+.auth-acts .profile-link svg {
+    width: 21px;
+    height: 21px;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.7;
+}
+
+.auth-acts .profile-link:hover {
+    background: var(--bg);
+    color: var(--primary-color);
+}
+
+.auth-acts .profile-link:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Small owl mark anchors the hero without competing with the search. */
+.hero-intro {
+    position: relative;
+    width: min(100%, 900px);
+    min-height: 174px;
+    margin: 48px auto 0;
+    padding: 12px 20px 0;
+    text-align: center;
+}
+
+.hero-bubbles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.hero-bubble {
+    position: absolute;
+    display: grid;
+    width: var(--bubble-size, 24px);
+    height: var(--bubble-size, 24px);
+    place-items: center;
+    color: var(--secondary-color);
+    opacity: 0;
+    animation: hero-icon-bubble var(--bubble-duration, 9s) ease-in-out infinite both;
+}
+
+.hero-bubble:nth-child(1) {
+    top: 38px;
+    left: 7%;
+    --bubble-size: 27px;
+    --bubble-drift: -7px;
+    --bubble-duration: 8.8s;
+    animation-delay: -0.2s;
+}
+
+.hero-bubble:nth-child(2) {
+    top: 112px;
+    left: 21%;
+    --bubble-size: 20px;
+    --bubble-drift: 6px;
+    --bubble-duration: 9.6s;
+    color: var(--primary-color);
+    animation-delay: -1.4s;
+}
+
+.hero-bubble:nth-child(3) {
+    top: 19px;
+    right: 27%;
+    --bubble-size: 22px;
+    --bubble-drift: 8px;
+    --bubble-duration: 8.3s;
+    animation-delay: -0.8s;
+}
+
+.hero-bubble:nth-child(4) {
+    top: 104px;
+    right: 8%;
+    --bubble-size: 29px;
+    --bubble-drift: -5px;
+    --bubble-duration: 10.1s;
+    color: var(--highlight-color);
+    animation-delay: -2.1s;
+}
+
+.hero-bubble:nth-child(5) {
+    top: 7px;
+    left: 32%;
+    --bubble-size: 24px;
+    --bubble-drift: -5px;
+    --bubble-duration: 9.2s;
+    animation-delay: -3.3s;
+}
+
+.hero-bubble:nth-child(6) {
+    top: 72px;
+    left: 34%;
+    --bubble-size: 21px;
+    --bubble-drift: 7px;
+    --bubble-duration: 8.6s;
+    color: var(--secondary-color);
+    animation-delay: -4.4s;
+}
+
+.hero-bubble:nth-child(7) {
+    top: 17px;
+    right: 34%;
+    --bubble-size: 25px;
+    --bubble-drift: 6px;
+    --bubble-duration: 9.8s;
+    color: var(--primary-color);
+    animation-delay: -5.5s;
+}
+
+.hero-bubble:nth-child(8) {
+    top: 72px;
+    right: 35%;
+    --bubble-size: 19px;
+    --bubble-drift: -8px;
+    --bubble-duration: 9s;
+    color: var(--highlight-color);
+    animation-delay: -6.6s;
+}
+
+.hero-bubble svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1.6;
+}
+
+.hero-logo,
+.tagline {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-logo {
+    display: block;
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 14px;
+    object-fit: contain;
+}
+
+.tagline {
+    margin: 0;
+    color: var(--text);
+    font-family: var(--font-brand);
+    font-size: 1.45rem;
+    line-height: 1.35;
+}
+
+@keyframes hero-icon-bubble {
+    0%, 8%, 76%, 100% {
+        opacity: 0;
+        transform: translate(var(--bubble-drift, 0), 10px) scale(0.72);
+    }
+
+    16% {
+        opacity: 0.78;
+        transform: translate(0, 0) scale(1);
+    }
+
+    64% {
+        opacity: 0.68;
+        transform: translateY(-3px) scale(1);
+    }
+
+    72% {
+        opacity: 0;
+        transform: translateY(-10px) scale(0.82);
+    }
 }
 
 /* Search */
@@ -177,13 +380,13 @@ body {
 
 /* DATA GALLERY */
 .posts-section {
-    margin-top: 40px;
+    margin-top: 76px;
 }
 
 .posts {
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: 38px;
     flex-wrap: wrap;
     max-width: 750px;
     margin: 0 auto;
@@ -243,7 +446,7 @@ body {
 .upload-box {
     width: 500px;
     max-width: calc(100% - 40px);
-    margin: 40px auto;
+    margin: 64px auto;
     padding: 32px 20px;
     border: 2px dashed #D9D5CC;
     border-radius: 16px;
@@ -327,4 +530,63 @@ body {
 
 .upload-box:hover .upload-button {
     background-color: #D9634E;
+}
+
+@media (max-width: 760px) {
+    .hero-intro {
+        margin-top: 36px;
+        min-height: 156px;
+    }
+
+    .hero-logo {
+        width: 62px;
+        height: 62px;
+    }
+
+    .tagline {
+        font-size: 1.2rem;
+    }
+
+    .posts-section {
+        margin-top: 56px;
+    }
+
+    .hero-bubble {
+        --bubble-size: 23px;
+    }
+
+    .hero-bubble:nth-child(1) {
+        left: 3%;
+        top: 38px;
+    }
+
+    .hero-bubble:nth-child(2),
+    .hero-bubble:nth-child(4),
+    .hero-bubble:nth-child(6),
+    .hero-bubble:nth-child(8) {
+        display: none;
+    }
+
+    .hero-bubble:nth-child(3) {
+        right: 3%;
+        top: 49px;
+    }
+
+    .hero-bubble:nth-child(5) {
+        left: 15%;
+        top: 5px;
+    }
+
+    .hero-bubble:nth-child(7) {
+        right: 15%;
+        top: 2px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-bubble {
+        animation: none;
+        opacity: 0.4;
+        transform: none;
+    }
 }

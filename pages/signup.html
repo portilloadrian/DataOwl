@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | DataOwls</title>
+    <link rel="stylesheet" href="../styles/theme.css">
+    <link rel="stylesheet" href="../styles/auth.css">
+</head>
+<body>
+    <!-- Shared account-page header -->
+    <header class="auth-header">
+        <a class="auth-brand" href="../index.html">
+            <img src="../assets/owl-d.png" alt="D" class="logo-owl">
+            <span class="logo-letter">a</span>
+            <span class="logo-letter">t</span>
+            <span class="logo-letter">a</span>
+            <span class="logo-letter">O</span>
+            <span class="logo-letter">w</span>
+            <span class="logo-letter">l</span>
+            <span class="logo-letter">s</span>
+        </a>
+        <a class="header-link" href="login.html">Log in</a>
+    </header>
+
+    <!-- Account creation form -->
+    <main class="auth-main">
+        <section class="auth-card" aria-labelledby="page-title">
+            <h1 id="page-title">Create your account</h1>
+            <p class="auth-intro">Join DataOwls to create and share your data stories.</p>
+
+            <form class="auth-form">
+                <label for="username">Username</label>
+                <input id="username" name="username" type="text" autocomplete="username" placeholder="Choose a username" required>
+
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" autocomplete="new-password" placeholder="Create a password" required>
+
+                <button class="submit-button" type="submit">Create Account</button>
+            </form>
+
+            <p class="auth-switch">Already have an account? <a href="login.html">Log in</a></p>
+        </section>
+    </main>
+
+    <!-- Return navigation -->
+    <footer class="auth-footer"><a href="../index.html">Back to home</a></footer>
+</body>
+</html>
