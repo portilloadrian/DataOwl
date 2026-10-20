@@ -6,6 +6,22 @@ body {
     text-align: center;
 }
 
+.site-header {
+    width: 100%;
+    padding: 12px 24px;
+    background-color: var(--surface);
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+.site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+    margin: 0 auto;
+}
+
 .screen-container {
     display: flex;
     flex-direction: column;
