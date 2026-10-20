@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataOwls Profile</title>
+
+    <style>
+        /* Main page */
+        body {
+            background-color: #1E293B;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            text-align: center;
+        }
+
+        /* Main screen layout */
+        .screen-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            min-height: 100vh;
+            padding: 30px 20px;
+            box-sizing: border-box;
+        }
+
+        /* DataOwls logo text */
+        .logoText {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            margin: 0;
+            font-size: 24px;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Profile information */
+        .profile-info {
+            margin-top: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Profile picture and username */
+        .side-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .box-two {
+            text-align: left;
+        }
+
+        .box-two p {
+            margin: 8px 0;
+        }
+
+        /* Profile picture */
+        .profilePic {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        /* Bio */
+        .profile-info > p {
+            margin: 20px 0;
+        }
+
+        /* Role input */
+        .profile-info input {
+            padding: 10px;
+            margin: 10px;
+            border: 1px solid #64748B;
+            border-radius: 4px;
+            background-color: #334155;
+            color: white;
+        }
+
+        .profile-info input::placeholder {
+            color: #CBD5E1;
+        }
+
+        /* Buttons */
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #D3D3D3;
+            color: #1E293B;
+        }
+
+        /* Posts, reposts, and saved tabs */
+        .Dataset-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            margin-top: 50px;
+            width: 100%;
+        }
+
+        .Datasets {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            background-color: #334155;
+            border: 1px solid #475569;
+            border-radius: 8px;
+        }
+
+        .Datasets img {
+            width: 35px;
+            height: 35px;
+            object-fit: contain;
+        }
+
+        /* Posts table */
+        .data-table {
+            margin: 30px auto;
+            width: 80%;
+            max-width: 900px;
+            table-layout: fixed;
+            border-collapse: collapse;
+        }
+
+        /* Individual post cells */
+        .data-table td {
+            position: relative;
+            text-align: center;
+            vertical-align: middle;
+            width: 33.33%;
+            height: 180px;
+            padding: 20px;
+            border: 1px solid #475569;
+            background-color: #334155;
+        }
+
+        /* Post type icons */
+        .post-icons {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            margin: 0;
+            width: 22px;
+            height: 22px;
+            object-fit: contain;
+        }
+
+        /* Smaller screens */
+        @media (max-width: 600px) {
+            .logoText {
+                position: static;
+                margin-bottom: 25px;
+            }
+
+            .profile-info {
+                margin-top: 20px;
+            }
+
+            .Dataset-content {
+                gap: 20px;
+                margin-top: 35px;
+            }
+
+            .data-table {
+                width: 95%;
+            }
+
+            .data-table td {
+                height: 120px;
+                padding: 8px;
+            }
+
+            .profilePic {
+                width: 75px;
+                height: 75px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="screen-container">
+
+        <!-- Profile -->
+        <header class="profile-info">
+
+            <h1 class="logoText">DataOwls</h1>
+
+            <div class="side-container">
+
+                <div class="box-one">
+                    <img class="profilePic" src="owl.png" alt="Profile Picture">
+                </div>
+
+                <div class="box-two">
+                    <p><strong>Username</strong></p>
+                    <p>0 Followers | 0 Following</p>
+                </div>
+
+            </div>
+
+            <p>(bio goes here)</p>
+
+            <label for="custom-role">Role</label>
+            <input type="text" id="custom-role" placeholder="Enter your role">
+
+            <button type="button">Edit Profile</button>
+
+        </header>
+
+        <!-- Posts, reposts, and saved tabs -->
+        <section class="Dataset-content">
+
+            <button class="Datasets" type="button" aria-label="Posts">
+                <img src="posts.png" alt="Posts">
+            </button>
+
+            <button class="Datasets" type="button" aria-label="Reposts">
+                <img src="reposts.png" alt="Reposts">
+            </button>
+
+            <button class="Datasets" type="button" aria-label="Saved">
+                <img src="saved.png" alt="Saved">
+            </button>
+
+        </section>
+
+        <!-- Post gallery -->
+        <section>
+
+            <table class="data-table">
+                <tr>
+
+                    <td>
+                        <img src="pinned.png" class="post-icons" alt="Pinned">
+                        <p>Post 1</p>
+                    </td>
+
+                    <td>
+                        <img src="collaborated.png" class="post-icons" alt="Collaborated">
+                        <p>Post 2</p>
+                    </td>
+
+                    <td>
+                        <img src="solo.png" class="post-icons" alt="Solo">
+                        <p>Post 3</p>
+                    </td>
+
+                </tr>
+            </table>
+
+        </section>
+
+    </div>
+
+</body>
+</html>
