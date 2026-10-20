@@ -1,71 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <title>HTML Practice</title>
-      <link rel="stylesheet" href="../styles/profile.css">
-   </head>
 
-   <div class="screen-container">
-   <body>
-    <!-- profile -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="profile.css">
+    <title>DataOwls Profile</title>
 
-    <header class = "profile-info">
-         <h1 class="logoText">DataOwl</h1>
-         <div class="side-container">
-            <div class="box-one">
-            <img class="profilePic" src="../assets/dataowls-logo.jpg" alt="Profile Picture">
+   
+</head>
+
+<header class="site-header">
+        <div class="site-header__inner">
+            <a class="title discover-brand" href="../index.html" aria-label="DataOwls home">
+                <img src="../assets/owl-d.png" alt="D" class="logo-owl">
+                <span class="logo-letter">a</span>
+                <span class="logo-letter">t</span>
+                <span class="logo-letter">a</span>
+                <span class="logo-letter">O</span>
+                <span class="logo-letter">w</span>
+                <span class="logo-letter">l</span>
+                <span class="logo-letter">s</span>
+            </a>
+
+            <nav class="navigation" aria-label="Main navigation">
+                <a href="../index.html#featured-stories">Explore Stories</a>
+                <a class="is-current" href="discover.html" aria-current="page">Discover</a>
+            </nav>
+
+            <div class="auth-acts" aria-label="Account actions">
+                <a class="login-button" href="login.html">Login</a>
+                <a class="signup-button" href="signup.html">Sign Up</a>
+                <a class="profile-link" href="profile.html" aria-label="View profile" title="Profile">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <circle cx="12" cy="8" r="3.5"></circle>
+                        <path d="M5.5 20a6.5 6.5 0 0 1 13 0"></path>
+                    </svg>
+                </a>
             </div>
-            <div class="box-two">
-            <p>Username</p>
-            <p>0 Followers | 0 Following</p>
-            </div>
-            
-         </div>
-         
-         <p>(bio goes here)</p>
-         
-         <label for="role">Role</label>
-         <input type="text" id="custom-role" placeholder="Enter your role">
-         <button>Edit Profile</button>
-
+        </div>
     </header>
 
-    <!-- Posts -->
-     <section class = "Dataset-content">
 
-      <button class = "Datasets">
-         <img src = "../assets/posts.png" alt = "Posts">
-      </button>
-      <button class = "Datasets">
-         <img src = "../assets/reposts.png" alt = "Reposts">
-      </button>
-      <button class = "Datasets">
-         <img src = "../assets/saved.png" alt = "Saved posts">
-      </button>
-      
+<body>
 
-    </section>
+    <div class="screen-container">
 
-    <section>
-      <table class="data-table">
-         <tr>
-            <td>
-               <img src="../assets/pinned.png" class="post-icons" alt="Pinned post">
-               <p>Post 1</p>
-            </td>
-            <td>
-               <img src="../assets/collaborated.png" class="post-icons" alt="Collaborated post">
-               <p>Post 2</p>
-            </td>
-            <td>
-               <img src="../assets/solo.png" class="post-icons" alt="Solo post">
-               <p>Post 3</p>
-            </td>
-         </tr>
+        <!-- Profile -->
+        <header class="profile-info">
 
-      </table>
+            <h1 class="logoText">DataOwls</h1>
 
-    </section>
-   </body>
-   </div>
-   </div>
+            <div class="side-container">
+
+                <div class="box-one">
+                    <img class="profilePic" src="owl.png" alt="Profile Picture">
+                </div>
+
+                <div class="box-two">
+                    <p><strong>Username</strong></p>
+                    <p>0 Followers | 0 Following</p>
+                </div>
+
+            </div>
+
+            <p>(bio goes here)</p>
+
+            <label for="custom-role">Role</label>
+            <input type="text" id="custom-role" placeholder="Enter your role">
+
+            <button type="button">Edit Profile</button>
+
+        </header>
+
+        <!-- Posts, reposts, and saved tabs -->
+        <section class="Dataset-content">
+
+            <button class="Datasets" type="button" aria-label="Posts">
+                <img src="posts.png" alt="Posts">
+            </button>
+
+            <button class="Datasets" type="button" aria-label="Reposts">
+                <img src="reposts.png" alt="Reposts">
+            </button>
+
+            <button class="Datasets" type="button" aria-label="Saved">
+                <img src="saved.png" alt="Saved">
+            </button>
+
+        </section>
+
+        <!-- Post gallery -->
+        <section>
+
+            <table class="data-table">
+                <tr>
+
+                    <td>
+                        <img src="pinned.png" class="post-icons" alt="Pinned">
+                        <p>Post 1</p>
+                    </td>
+
+                    <td>
+                        <img src="collaborated.png" class="post-icons" alt="Collaborated">
+                        <p>Post 2</p>
+                    </td>
+
+                    <td>
+                        <img src="solo.png" class="post-icons" alt="Solo">
+                        <p>Post 3</p>
+                    </td>
+
+                </tr>
+            </table>
+
+        </section>
+
+    </div>
+
+</body>
+</html>
