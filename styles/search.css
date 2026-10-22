@@ -193,8 +193,17 @@
 }
 
 .navigation {
+    position: relative;
     align-items: center;
     margin-left: 0;
+}
+
+/* Discover hangs off the left of the search bar so the bar itself is
+   the thing that sits dead-center in the header */
+.navigation > a {
+    position: absolute;
+    right: 100%;
+    margin-right: 20px;
 }
 
 .navigation .search-combobox {
@@ -216,6 +225,8 @@
 .navigation .search-dropdown {
     width: 420px;
     max-width: 90vw;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 /* History sidebar: pinned to the left edge, out of the layout flow so
@@ -279,6 +290,16 @@
 
     .navigation {
         margin-left: auto;
+    }
+
+    .navigation > a {
+        position: static;
+        margin-right: 0;
+    }
+
+    .navigation .search-dropdown {
+        left: 0;
+        transform: none;
     }
 
     .navigation .search-combobox {
