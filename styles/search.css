@@ -175,3 +175,113 @@
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+
+
+/* Header: logo left, nav + search centered, account buttons right.
+   Three equal-ish columns keep the middle truly centered on the page. */
+.site-header__inner {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+}
+
+.site-header__inner .title {
+    justify-self: start;
+}
+
+.site-header__inner .auth-acts {
+    justify-self: end;
+}
+
+.navigation {
+    align-items: center;
+    margin-left: 0;
+}
+
+.navigation .search-combobox {
+    width: 300px;
+    margin: 0;
+}
+
+.navigation .search-input-wrapper {
+    padding: 8px 12px;
+    border-radius: 10px;
+    box-shadow: none;
+}
+
+.navigation .search-input {
+    font-size: 14px;
+}
+
+/* dropdown stays wide enough for the recent-people row */
+.navigation .search-dropdown {
+    width: 420px;
+    max-width: 90vw;
+}
+
+/* History sidebar: pinned to the left edge, out of the layout flow so
+   the main content stays centered (like GitHub's "Top repositories") */
+.history-sidebar {
+    position: fixed;
+    top: 100px;
+    left: 24px;
+    width: 200px;
+    text-align: left;
+}
+
+.history-title {
+    margin: 0 0 8px;
+    padding: 0 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted-color);
+}
+
+.history-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.history-list a {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--text);
+}
+
+.history-list a:hover {
+    background-color: var(--surface);
+}
+
+.history-post {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.history-user {
+    font-size: 12px;
+    color: var(--muted-color);
+}
+
+/* not enough side room: hide the sidebar instead of overlapping content */
+@media (max-width: 1300px) {
+    .history-sidebar {
+        display: none;
+    }
+}
+
+@media (max-width: 800px) {
+    .site-header__inner {
+        display: flex;
+    }
+
+    .navigation {
+        margin-left: auto;
+    }
+
+    .navigation .search-combobox {
+        width: 180px;
+    }
+}

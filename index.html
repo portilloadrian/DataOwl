@@ -39,9 +39,114 @@
             <!-- Navigation -->
             <nav class="navigation">
 
-                <a href="#featured-stories">Explore Stories</a>
-
                 <a href="pages/discover.html">Discover</a>
+
+            <!-- Search (moved into the nav) -->
+            <div class="search-combobox" id="searchCombobox">
+                <!-- Search Input Bar -->
+                <div class="search-input-wrapper">
+                    <svg class="search-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input 
+                        type="text" 
+                        class="search-input" 
+                        placeholder="Search datasets, people, or posts..." 
+                        aria-label="Search" 
+                        aria-expanded="false" 
+                        aria-controls="searchDropdown" 
+                    />
+                </div>
+
+                <!-- Floating Dropdown Box -->
+                <div class="search-dropdown" id="searchDropdown" role="listbox">
+                    <!-- Recent Section Header -->
+                    <div class="dropdown-header">
+                        <span class="header-title">Recent</span>
+                        <button type="button" class="clear-btn">Clear all</button>
+                    </div>
+
+                    <!-- Horizontal People Avatars -->
+                    <div class="recent-people-row">
+                        <a href="pages/profile.html" class="person-item">
+                            <img src="assets/dataowls-logo.jpg" alt="Jan Rebolledo" class="avatar" />
+                            <span class="person-name">Jan Rebolle...</span>
+                        </a>
+                        <a href="pages/profile.html" class="person-item">
+                            <img src="assets/dataowls-logo.jpg" alt="Kai Cheng" class="avatar" />
+                            <span class="person-name">Kai (Kyle) Cheng, ..</span>
+                        </a>
+                        <a href="pages/profile.html" class="person-item">
+                            <img src="assets/dataowls-logo.jpg" alt="Steven Nguyen" class="avatar" />
+                            <span class="person-name">Steven Nguyen</span>
+                        </a>
+                        <a href="pages/profile.html" class="person-item">
+                            <img src="assets/dataowls-logo.jpg" alt="Sehaj Singh" class="avatar" />
+                            <span class="person-name">Sehaj Singh</span>
+                        </a>
+                        <a href="pages/profile.html" class="person-item">
+                            <img src="assets/dataowls-logo.jpg" alt="Jordan Patel" class="avatar" />
+                            <span class="person-name">Jordan Patel</span>
+                        </a>
+                    </div>
+
+                    <!-- Recent History Searches -->
+                    <ul class="query-list recent-queries">
+                        <li class="query-item">
+                            <svg class="query-icon clock-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                            <span class="query-text">population growth</span>
+                        </li>
+                        <li class="query-item">
+                            <svg class="query-icon clock-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                            <span class="query-text">monthly expenses chart</span>
+                        </li>
+                    </ul>
+
+                    <!-- Suggested Searches Header -->
+                    <div class="dropdown-header section-divider">
+                        <span class="header-title">Try searching for</span>
+                    </div>
+
+                    <!-- Suggested Search Queries -->
+                    <ul class="query-list suggested-queries">
+                        <li class="query-item">
+                            <svg class="query-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            <span class="query-text">usa gdp 2024</span>
+                        </li>
+                        <li class="query-item">
+                            <svg class="query-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            <span class="query-text">climate trends dataset</span>
+                        </li>
+                        <li class="query-item">
+                            <svg class="query-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            <span class="query-text">college tuition over time</span>
+                        </li>
+                        <li class="query-item">
+                            <svg class="query-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            <span class="query-text">favorite foods survey</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
             </nav>
 
@@ -68,6 +173,17 @@
 
     </header>
 
+
+    <!-- History of posts the user has interacted with (sample data for now) -->
+    <aside class="history-sidebar" aria-label="Post history">
+        <h2 class="history-title">Recently viewed</h2>
+        <ul class="history-list">
+            <li><a href="#featured-stories"><span class="history-post">Population Growth</span><span class="history-user">@user1_data</span></a></li>
+            <li><a href="#featured-stories"><span class="history-post">Monthly Expenses</span><span class="history-user">@user2_stats</span></a></li>
+            <li><a href="#featured-stories"><span class="history-post">Climate Trends</span><span class="history-user">@user4_charts</span></a></li>
+            <li><a href="#featured-stories"><span class="history-post">Movie Ratings</span><span class="history-user">@user5_data</span></a></li>
+        </ul>
+    </aside>
 
     <!-- Main Page Content -->
     <main class="main-content">
@@ -133,114 +249,6 @@
             <img class="hero-logo" src="assets/owl-d.png" alt="">
             <p class="tagline">Upload data. Create visuals. Share insights</p>
         </section>
-
-
-        <!-- Interactive Search Combobox -->
-        <div class="search-combobox" id="searchCombobox">
-            <!-- Search Input Bar -->
-            <div class="search-input-wrapper">
-                <svg class="search-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                </svg>
-                <input 
-                    type="text" 
-                    class="search-input" 
-                    placeholder="Search datasets, people, or posts..." 
-                    aria-label="Search" 
-                    aria-expanded="false" 
-                    aria-controls="searchDropdown" 
-                />
-            </div>
-
-            <!-- Floating Dropdown Box -->
-            <div class="search-dropdown" id="searchDropdown" role="listbox">
-                <!-- Recent Section Header -->
-                <div class="dropdown-header">
-                    <span class="header-title">Recent</span>
-                    <button type="button" class="clear-btn">Clear all</button>
-                </div>
-
-                <!-- Horizontal People Avatars -->
-                <div class="recent-people-row">
-                    <a href="pages/profile.html" class="person-item">
-                        <img src="assets/dataowls-logo.jpg" alt="Jan Rebolledo" class="avatar" />
-                        <span class="person-name">Jan Rebolle...</span>
-                    </a>
-                    <a href="pages/profile.html" class="person-item">
-                        <img src="assets/dataowls-logo.jpg" alt="Kai Cheng" class="avatar" />
-                        <span class="person-name">Kai (Kyle) Cheng, ..</span>
-                    </a>
-                    <a href="pages/profile.html" class="person-item">
-                        <img src="assets/dataowls-logo.jpg" alt="Steven Nguyen" class="avatar" />
-                        <span class="person-name">Steven Nguyen</span>
-                    </a>
-                    <a href="pages/profile.html" class="person-item">
-                        <img src="assets/dataowls-logo.jpg" alt="Sehaj Singh" class="avatar" />
-                        <span class="person-name">Sehaj Singh</span>
-                    </a>
-                    <a href="pages/profile.html" class="person-item">
-                        <img src="assets/dataowls-logo.jpg" alt="Jordan Patel" class="avatar" />
-                        <span class="person-name">Jordan Patel</span>
-                    </a>
-                </div>
-
-                <!-- Recent History Searches -->
-                <ul class="query-list recent-queries">
-                    <li class="query-item">
-                        <svg class="query-icon clock-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <polyline points="12 6 12 12 16 14"></polyline>
-                        </svg>
-                        <span class="query-text">population growth</span>
-                    </li>
-                    <li class="query-item">
-                        <svg class="query-icon clock-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <polyline points="12 6 12 12 16 14"></polyline>
-                        </svg>
-                        <span class="query-text">monthly expenses chart</span>
-                    </li>
-                </ul>
-
-                <!-- Suggested Searches Header -->
-                <div class="dropdown-header section-divider">
-                    <span class="header-title">Try searching for</span>
-                </div>
-
-                <!-- Suggested Search Queries -->
-                <ul class="query-list suggested-queries">
-                    <li class="query-item">
-                        <svg class="query-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                        </svg>
-                        <span class="query-text">usa gdp 2024</span>
-                    </li>
-                    <li class="query-item">
-                        <svg class="query-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                        </svg>
-                        <span class="query-text">climate trends dataset</span>
-                    </li>
-                    <li class="query-item">
-                        <svg class="query-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                        </svg>
-                        <span class="query-text">college tuition over time</span>
-                    </li>
-                    <li class="query-item">
-                        <svg class="query-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                        </svg>
-                        <span class="query-text">favorite foods survey</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
 
 
         <!-- Featured Stories -->
