@@ -10,6 +10,9 @@ import logoImage from "../assets/dataowls-logo.jpg";
 import pinnedIcon from "../assets/pinned.png";
 import collaboratedIcon from "../assets/collaborated.png";
 import soloIcon from "../assets/solo.png";
+import postsIcon from "../assets/posts.png";
+import repostsIcon from "../assets/reposts.png";
+import savedIcon from "../assets/saved.png";
 import icon7392195 from "../assets/noun_Owl_7392195.svg";
 import icon7417114 from "../assets/noun_Owl_7417114.svg";
 import icon7562088 from "../assets/noun_Owl_7562088.svg";
@@ -28,12 +31,22 @@ function rewriteMarkup(markup, user) {
   const rewritten = markup
     .replaceAll('src="../assets/owl-d.png"', `src="${owlMark}"`)
     .replaceAll('src="assets/owl-d.png"', `src="${owlMark}"`)
+    .replaceAll('src="owl.png"', `src="${assignedIcon ?? owlMark}"`)
     .replaceAll('src="assets/upload icon.png"', `src="${uploadIcon}"`)
     .replaceAll('src="../assets/dataowls-logo.jpg"', `src="${assignedIcon ?? logoImage}"`)
     .replaceAll('src="assets/dataowls-logo.jpg"', `src="${logoImage}"`)
     .replaceAll('src="../assets/pinned.png"', `src="${pinnedIcon}"`)
+    .replaceAll('src="pinned.png"', `src="${pinnedIcon}"`)
     .replaceAll('src="../assets/collaborated.png"', `src="${collaboratedIcon}"`)
+    .replaceAll('src="collaborated.png"', `src="${collaboratedIcon}"`)
     .replaceAll('src="../assets/solo.png"', `src="${soloIcon}"`)
+    .replaceAll('src="solo.png"', `src="${soloIcon}"`)
+    .replaceAll('src="../assets/posts.png"', `src="${postsIcon}"`)
+    .replaceAll('src="posts.png"', `src="${postsIcon}"`)
+    .replaceAll('src="../assets/reposts.png"', `src="${repostsIcon}"`)
+    .replaceAll('src="reposts.png"', `src="${repostsIcon}"`)
+    .replaceAll('src="../assets/saved.png"', `src="${savedIcon}"`)
+    .replaceAll('src="saved.png"', `src="${savedIcon}"`)
     .replaceAll("../index.html#featured-stories", "/#featured-stories")
     .replaceAll("../index.html", "/")
     .replaceAll("pages/discover.html", "/discover")
