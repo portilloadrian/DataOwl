@@ -17,6 +17,7 @@ import icon7392195 from "../assets/noun_Owl_7392195.svg";
 import icon7417114 from "../assets/noun_Owl_7417114.svg";
 import icon7562088 from "../assets/noun_Owl_7562088.svg";
 import icon7834524 from "../assets/noun_Owl_7834524.svg";
+import searchMarkup from "./content/search.html?raw";
 
 const markupByPage = {
   home: homeMarkup,
@@ -24,6 +25,7 @@ const markupByPage = {
   login: loginMarkup,
   profile: profileMarkup,
   signup: signupMarkup,
+  search: searchMarkup,
 };
 
 function rewriteMarkup(markup, user) {
@@ -67,6 +69,21 @@ function rewriteMarkup(markup, user) {
   return rewritten;
 }
 
+const CLEARED_KEY = "dataowls-recent-cleared";
+
+// "Clear all": remove recent people + history, keep the suggestions.
+function clearRecent(container) {
+  container.querySelector(".recent-people-row")?.remove();
+  container.querySelector(".recent-queries")?.remove();
+  container.querySelector(".clear-btn")?.remove();
+  if (!container.querySelector(".recent-empty")) {
+    const msg = document.createElement("p");
+    msg.className = "recent-empty";
+    msg.textContent = "No recent searches";
+    container.querySelector(".dropdown-header")?.after(msg);
+  }
+}
+
 export function StaticPrototypePage({ page, user, onNavigate }) {
   const markup = useMemo(() => rewriteMarkup(markupByPage[page], user), [page, user]);
   const containerRef = useRef(null);
@@ -78,19 +95,39 @@ export function StaticPrototypePage({ page, user, onNavigate }) {
 
   useEffect(() => {
     const container = containerRef.current;
+
     if (!container) return undefined;
     const cleanups = [];
     const search = container.querySelector(".search-combobox");
     const input = container.querySelector(".search-input");
+
     if (search && input) {
+      const goSearch = (query) => {
+        const q = query.trim();
+        if (q) onNavigate(`/search?q=${encodeURIComponent(q)}`);
+      };
       const open = () => search.classList.add("open");
-      const choose = (event) => { input.value = event.currentTarget.querySelector(".query-text")?.textContent ?? ""; search.classList.add("open"); };
-      const clear = () => { input.value = ""; input.focus(); };
+      const choose = (event) => goSearch(event.currentTarget.querySelector(".query-text")?.textContent ?? "");
+      const submit = (event) => { if (event.key === "Enter") goSearch(input.value); };
+      const clear = () => {
+        clearRecent(container);
+        input.focus();
+        localStorage.setItem(CLEARED_KEY, "1");
+      };
+      const clearBtn = container.querySelector(".clear-btn");
       input.addEventListener("focus", open);
+      input.addEventListener("keydown", submit);
       container.querySelectorAll(".query-item").forEach((item) => item.addEventListener("click", choose));
-      container.querySelector(".clear-btn")?.addEventListener("click", clear);
-      cleanups.push(() => { input.removeEventListener("focus", open); container.querySelectorAll(".query-item").forEach((item) => item.removeEventListener("click", choose)); container.querySelector(".clear-btn")?.removeEventListener("click", clear); });
+      clearBtn?.addEventListener("click", clear);
+      if (localStorage.getItem(CLEARED_KEY)) clearRecent(container);
+      cleanups.push(() => {
+        input.removeEventListener("focus", open);
+        input.removeEventListener("keydown", submit);
+        container.querySelectorAll(".query-item").forEach((item) => item.removeEventListener("click", choose));
+        clearBtn?.removeEventListener("click", clear);
+      });
     }
+
     if (page === "discover") {
       const topics = [...container.querySelectorAll(".topic-list li")];
       const cards = [...container.querySelectorAll(".story-card")];
@@ -102,6 +139,22 @@ export function StaticPrototypePage({ page, user, onNavigate }) {
       topics.forEach((topic) => { topic.setAttribute("role", "button"); topic.tabIndex = 0; topic.addEventListener("click", filter); });
       cleanups.push(() => topics.forEach((topic) => topic.removeEventListener("click", filter)));
     }
+
+    if (page === "search") {
+      const q = new URLSearchParams(window.location.search).get("q") ?? "";
+      if (input) input.value = q;
+      container.querySelectorAll("[data-query]").forEach((el) => { el.textContent = q || "everything"; });
+      const tabs = [...container.querySelectorAll(".results-tab")];
+      const cards = [...container.querySelectorAll(".result-card")];
+      const pick = (event) => {
+        const type = event.currentTarget.dataset.type;
+        tabs.forEach((tab) => tab.setAttribute("aria-selected", tab === event.currentTarget));
+        cards.forEach((card) => { card.hidden = type !== "all" && card.dataset.type !== type; });
+      };
+      tabs.forEach((tab) => tab.addEventListener("click", pick));
+      cleanups.push(() => tabs.forEach((tab) => tab.removeEventListener("click", pick)));
+    }
+
     return () => cleanups.forEach((cleanup) => cleanup());
   }, [page, markup]);
 
