@@ -60,6 +60,7 @@ Architecture decisions, API documentation, data-model notes, demo preparation, a
 
 Temporary home for the current static prototype during the React migration. Nothing new should be developed here. Once its useful design or content has been migrated, the folder can be removed in a separate cleanup change.
 
+
 ## Placement rules
 
 1. A page belongs in `client/src/pages`, even if it is currently large.

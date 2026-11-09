@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Stories | DataOwls</title>
+    <link rel="stylesheet" href="../styles/theme.css">
+    <link rel="stylesheet" href="../styles/landing.css">
+    <link rel="stylesheet" href="../styles/discover.css">
+</head>
+<body>
+    <!-- Shared site header keeps navigation consistent across pages. -->
+    <header class="site-header">
+        <div class="site-header__inner">
+            <a class="title discover-brand" href="../index.html" aria-label="DataOwls home">
+                <img src="../assets/owl-d.png" alt="D" class="logo-owl">
+                <span class="logo-letter">a</span>
+                <span class="logo-letter">t</span>
+                <span class="logo-letter">a</span>
+                <span class="logo-letter">O</span>
+                <span class="logo-letter">w</span>
+                <span class="logo-letter">l</span>
+                <span class="logo-letter">s</span>
+            </a>
+
+            <nav class="navigation" aria-label="Main navigation">
+                <a href="../index.html#featured-stories">Explore Stories</a>
+                <a class="is-current" href="discover.html" aria-current="page">Discover</a>
+            </nav>
+
+            <div class="auth-acts" aria-label="Account actions">
+                <a class="login-button" href="login.html">Login</a>
+                <a class="signup-button" href="signup.html">Sign Up</a>
+                <a class="profile-link" href="profile.html" aria-label="View profile" title="Profile">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <circle cx="12" cy="8" r="3.5"></circle>
+                        <path d="M5.5 20a6.5 6.5 0 0 1 13 0"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="discover-main">
+        <!-- Editorial introduction for the story collection. -->
+        <section class="discover-intro" aria-labelledby="discover-title">
+            <p class="discover-kicker">A COMMUNITY OF CURIOUS MINDS</p>
+            <h1 id="discover-title">Discover a story in the data.</h1>
+            <p class="discover-description">Explore visual stories made by people who see the interesting details in everyday data.</p>
+
+            <ul class="topic-list" aria-label="Popular topics">
+                <li>Environment</li>
+                <li>Culture</li>
+                <li>Health</li>
+                <li>Money</li>
+                <li>Science</li>
+            </ul>
+        </section>
+
+        <!-- Curated sample story cards; these are presentation content for now. -->
+        <section class="discover-stories" aria-labelledby="stories-title">
+            <div class="section-heading">
+                <div>
+                    <p class="section-eyebrow">COMMUNITY PICKS</p>
+                    <h2 id="stories-title">Stories to explore</h2>
+                </div>
+                <p class="section-note">A few visualizations to get you started.</p>
+            </div>
+
+            <div class="story-grid">
+                <article class="story-card">
+                    <div class="story-art story-art--population" aria-hidden="true">
+                        <svg viewBox="0 0 360 190">
+                            <path class="chart-grid" d="M34 34h292M34 76h292M34 118h292M34 160h292"></path>
+                            <path class="chart-axis" d="M34 22v138h292"></path>
+                            <path class="chart-line" d="m48 137 48-17 47 8 48-38 47 2 61-52"></path>
+                            <circle class="chart-point" cx="48" cy="137" r="4"></circle><circle class="chart-point" cx="96" cy="120" r="4"></circle><circle class="chart-point" cx="143" cy="128" r="4"></circle><circle class="chart-point" cx="191" cy="90" r="4"></circle><circle class="chart-point" cx="238" cy="92" r="4"></circle><circle class="chart-point" cx="299" cy="40" r="4"></circle>
+                        </svg>
+                    </div>
+                    <div class="story-card__body">
+                        <span class="story-category">DEMOGRAPHICS</span>
+                        <h3>How our cities are growing</h3>
+                        <p class="story-summary">A look at population shifts across the last two decades.</p>
+                        <div class="story-card__footer"><span class="creator"><span class="creator-avatar">U1</span>@user1_data</span><span class="story-stats">1.2k views · 32 likes</span></div>
+                    </div>
+                </article>
+
+                <article class="story-card">
+                    <div class="story-art story-art--spending" aria-hidden="true">
+                        <svg viewBox="0 0 360 190">
+                            <path class="chart-grid" d="M34 42h292M34 82h292M34 122h292M34 162h292"></path>
+                            <path class="chart-axis" d="M34 24v138h292"></path>
+                            <rect class="chart-bar chart-bar--coral" x="63" y="94" width="34" height="68" rx="6"></rect><rect class="chart-bar chart-bar--blue" x="119" y="64" width="34" height="98" rx="6"></rect><rect class="chart-bar chart-bar--gold" x="175" y="111" width="34" height="51" rx="6"></rect><rect class="chart-bar chart-bar--blue" x="231" y="48" width="34" height="114" rx="6"></rect><rect class="chart-bar chart-bar--coral" x="287" y="78" width="22" height="84" rx="6"></rect>
+                        </svg>
+                    </div>
+                    <div class="story-card__body">
+                        <span class="story-category">PERSONAL FINANCE</span>
+                        <h3>Where a monthly budget goes</h3>
+                        <p class="story-summary">Small daily purchases add up in surprising ways.</p>
+                        <div class="story-card__footer"><span class="creator"><span class="creator-avatar creator-avatar--blue">U2</span>@user2_stats</span><span class="story-stats">982 views · 27 likes</span></div>
+                    </div>
+                </article>
+
+                <article class="story-card">
+                    <div class="story-art story-art--climate" aria-hidden="true">
+                        <svg viewBox="0 0 360 190">
+                            <path class="chart-grid" d="M34 34h292M34 76h292M34 118h292M34 160h292"></path>
+                            <path class="chart-axis" d="M34 22v138h292"></path>
+                            <path class="chart-area" d="m45 130 48-18 46 11 47-44 49 8 61-47 30 4v116H45Z"></path>
+                            <path class="chart-line chart-line--blue" d="m45 130 48-18 46 11 47-44 49 8 61-47 30 4"></path>
+                        </svg>
+                    </div>
+                    <div class="story-card__body">
+                        <span class="story-category">ENVIRONMENT</span>
+                        <h3>Reading the changing seasons</h3>
+                        <p class="story-summary">Temperature patterns tell a story about our local climate.</p>
+                        <div class="story-card__footer"><span class="creator"><span class="creator-avatar creator-avatar--gold">U4</span>@user4_charts</span><span class="story-stats">654 views · 15 likes</span></div>
+                    </div>
+                </article>
+
+                <article class="story-card">
+                    <div class="story-art story-art--food" aria-hidden="true">
+                        <svg viewBox="0 0 360 190">
+                            <circle class="donut-track" cx="180" cy="95" r="55"></circle>
+                            <circle class="donut-segment donut-segment--coral" cx="180" cy="95" r="55"></circle>
+                            <circle class="donut-segment donut-segment--blue" cx="180" cy="95" r="55"></circle>
+                            <circle class="donut-segment donut-segment--gold" cx="180" cy="95" r="55"></circle>
+                            <circle class="donut-center" cx="180" cy="95" r="31"></circle>
+                            <text class="donut-label" x="180" y="100" text-anchor="middle">42%</text>
+                        </svg>
+                    </div>
+                    <div class="story-card__body">
+                        <span class="story-category">CULTURE</span>
+                        <h3>Our favorite comfort foods</h3>
+                        <p class="story-summary">A community poll reveals what makes the top of the table.</p>
+                        <div class="story-card__footer"><span class="creator"><span class="creator-avatar creator-avatar--coral">U3</span>@user3_visuals</span><span class="story-stats">756 views · 19 likes</span></div>
+                    </div>
+                </article>
+
+                <article class="story-card">
+                    <div class="story-art story-art--fitness" aria-hidden="true">
+                        <svg viewBox="0 0 360 190">
+                            <path class="chart-grid" d="M34 34h292M34 76h292M34 118h292M34 160h292"></path>
+                            <path class="chart-axis" d="M34 22v138h292"></path>
+                            <rect class="chart-bar chart-bar--blue" x="58" y="116" width="38" height="46" rx="6"></rect><rect class="chart-bar chart-bar--coral" x="117" y="94" width="38" height="68" rx="6"></rect><rect class="chart-bar chart-bar--gold" x="176" y="76" width="38" height="86" rx="6"></rect><rect class="chart-bar chart-bar--blue" x="235" y="55" width="38" height="107" rx="6"></rect>
+                        </svg>
+                    </div>
+                    <div class="story-card__body">
+                        <span class="story-category">HEALTH</span>
+                        <h3>A year of getting outside</h3>
+                        <p class="story-summary">Tracking the little habits behind a more active year.</p>
+                        <div class="story-card__footer"><span class="creator"><span class="creator-avatar creator-avatar--blue">U6</span>@user6_stats</span><span class="story-stats">712 views · 18 likes</span></div>
+                    </div>
+                </article>
+
+                <article class="story-card">
+                    <div class="story-art story-art--movies" aria-hidden="true">
+                        <svg viewBox="0 0 360 190">
+                            <path class="chart-grid" d="M34 34h292M34 76h292M34 118h292M34 160h292"></path>
+                            <path class="chart-axis" d="M34 22v138h292"></path>
+                            <circle class="scatter-dot scatter-dot--coral" cx="82" cy="125" r="8"></circle><circle class="scatter-dot scatter-dot--blue" cx="126" cy="88" r="6"></circle><circle class="scatter-dot scatter-dot--gold" cx="165" cy="107" r="10"></circle><circle class="scatter-dot scatter-dot--blue" cx="206" cy="63" r="7"></circle><circle class="scatter-dot scatter-dot--coral" cx="250" cy="83" r="9"></circle><circle class="scatter-dot scatter-dot--gold" cx="289" cy="48" r="6"></circle>
+                        </svg>
+                    </div>
+                    <div class="story-card__body">
+                        <span class="story-category">ENTERTAINMENT</span>
+                        <h3>What makes a movie memorable?</h3>
+                        <p class="story-summary">Comparing audience ratings with the stories they love.</p>
+                        <div class="story-card__footer"><span class="creator"><span class="creator-avatar">U5</span>@user5_data</span><span class="story-stats">842 views · 21 likes</span></div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="discover-footer">
+        <a href="../index.html">Back to DataOwls home</a>
+        <span>© 2026 DataOwls</span>
+    </footer>
+</body>
+</html>

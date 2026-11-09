@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DataOwls</title>
+    <link rel="stylesheet" href="styles/theme.css">
+    <link rel="stylesheet" href="styles/landing.css">
+    <link rel="stylesheet" href="styles/search.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- Landing Page Header -->
+    <header class="site-header">
+
+        <div class="site-header__inner">
+
+            <!-- DataOwls wordmark -->
+            <div class="title">
+
+            <img src="assets/owl-d.png" alt="D" class="logo-owl">
+            <span class="logo-letter">a</span>
+            <span class="logo-letter">t</span>
+            <span class="logo-letter">a</span>
+            <span class="logo-letter">O</span>
+            <span class="logo-letter">w</span>
+            <span class="logo-letter">l</span>
+            <span class="logo-letter">s</span>
+
+            </div>
+
+
+            <!-- Navigation -->
+            <nav class="navigation">
+
+                <a href="#featured-stories">Explore Stories</a>
+
+                <a href="pages/discover.html">Discover</a>
+
+            </nav>
+
+
+            <!-- Login / Sign Up -->
+            <div class="auth-acts" aria-label="Account actions">
+                <a class="login-button" href="pages/login.html">
+                    Login
+                </a>
+                <a class="signup-button" href="pages/signup.html">
+                    Sign Up
+                </a>
+                <!-- Default account icon links to the profile page. -->
+                <a class="profile-link" href="pages/profile.html" aria-label="View profile" title="Profile">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <circle cx="12" cy="8" r="3.5"></circle>
+                        <path d="M5.5 20a6.5 6.5 0 0 1 13 0"></path>
+                    </svg>
+                </a>
+            </div>
+            
+
+        </div>
+
+    </header>
+
+
+    <!-- Main Page Content -->
+    <main class="main-content">
+
+
+        <!-- Brand mark and tagline introduce the homepage search. -->
+        <section class="hero-intro" aria-label="DataOwls introduction">
+            <!-- Decorative data icons bubble in around the hero copy. -->
+            <div class="hero-bubbles" aria-hidden="true">
+                <span class="hero-bubble">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4 19.5h16M6.5 16V11m5 5V6.5m5 9.5v-7"></path>
+                    </svg>
+                </span>
+                <span class="hero-bubble">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 3.5v8.5h8.5A8.5 8.5 0 1 1 12 3.5Z"></path>
+                        <path d="M15 3.8a8.5 8.5 0 0 1 5.2 5.2H15V3.8Z"></path>
+                    </svg>
+                </span>
+                <span class="hero-bubble">
+                    <svg viewBox="0 0 24 24">
+                        <ellipse cx="12" cy="5.5" rx="7.5" ry="3"></ellipse>
+                        <path d="M4.5 5.5v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-6M4.5 11.5v6c0 1.7 3.4 3 7.5 3s7.5-1.3 7.5-3v-6"></path>
+                    </svg>
+                </span>
+                <span class="hero-bubble">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4 19.5h16M6 16v-2m5 2V8m5 8v-5"></path>
+                        <circle cx="6" cy="7" r="1"></circle>
+                        <circle cx="17" cy="6" r="1"></circle>
+                    </svg>
+                </span>
+                <span class="hero-bubble">
+                    <svg viewBox="0 0 24 24">
+                        <rect x="4" y="4.5" width="16" height="15" rx="1.5"></rect>
+                        <path d="M4 9.5h16M9 9.5v10M14.5 9.5v10"></path>
+                    </svg>
+                </span>
+                <span class="hero-bubble">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4 19.5h16M5.5 16l4-4 3 2 5.5-7"></path>
+                        <circle cx="5.5" cy="16" r="1"></circle>
+                        <circle cx="9.5" cy="12" r="1"></circle>
+                        <circle cx="12.5" cy="14" r="1"></circle>
+                        <circle cx="18" cy="7" r="1"></circle>
+                    </svg>
+                </span>
+                <span class="hero-bubble">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="6" cy="6" r="2"></circle>
+                        <circle cx="18" cy="7" r="2"></circle>
+                        <circle cx="11" cy="18" r="2"></circle>
+                        <path d="m7.8 6.4 8.3.9M7.2 7.7l2.7 8.5m6.8-7.4-4.4 7.1"></path>
+                    </svg>
+                </span>
+                <span class="hero-bubble">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M5 4.5h14v15H5zM5 9.5h14M5 14.5h14M10 9.5v10M15 9.5v10"></path>
+                    </svg>
+                </span>
+            </div>
+            <img class="hero-logo" src="assets/owl-d.png" alt="">
+            <p class="tagline">Upload data. Create visuals. Share insights</p>
+        </section>
+
+
+        <!-- Interactive Search Combobox -->
+        <div class="search-combobox" id="searchCombobox">
+            <!-- Search Input Bar -->
+            <div class="search-input-wrapper">
+                <svg class="search-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input 
+                    type="text" 
+                    class="search-input" 
+                    placeholder="Search datasets, people, or posts..." 
+                    aria-label="Search" 
+                    aria-expanded="false" 
+                    aria-controls="searchDropdown" 
+                />
+            </div>
+
+            <!-- Floating Dropdown Box -->
+            <div class="search-dropdown" id="searchDropdown" role="listbox">
+                <!-- Recent Section Header -->
+                <div class="dropdown-header">
+                    <span class="header-title">Recent</span>
+                    <button type="button" class="clear-btn">Clear all</button>
+                </div>
+
+                <!-- Horizontal People Avatars -->
+                <div class="recent-people-row">
+                    <a href="pages/profile.html" class="person-item">
+                        <img src="assets/dataowls-logo.jpg" alt="Jan Rebolledo" class="avatar" />
+                        <span class="person-name">Jan Rebolle...</span>
+                    </a>
+                    <a href="pages/profile.html" class="person-item">
+                        <img src="assets/dataowls-logo.jpg" alt="Kai Cheng" class="avatar" />
+                        <span class="person-name">Kai (Kyle) Cheng, ..</span>
+                    </a>
+                    <a href="pages/profile.html" class="person-item">
+                        <img src="assets/dataowls-logo.jpg" alt="Steven Nguyen" class="avatar" />
+                        <span class="person-name">Steven Nguyen</span>
+                    </a>
+                    <a href="pages/profile.html" class="person-item">
+                        <img src="assets/dataowls-logo.jpg" alt="Sehaj Singh" class="avatar" />
+                        <span class="person-name">Sehaj Singh</span>
+                    </a>
+                    <a href="pages/profile.html" class="person-item">
+                        <img src="assets/dataowls-logo.jpg" alt="Jordan Patel" class="avatar" />
+                        <span class="person-name">Jordan Patel</span>
+                    </a>
+                </div>
+
+                <!-- Recent History Searches -->
+                <ul class="query-list recent-queries">
+                    <li class="query-item">
+                        <svg class="query-icon clock-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        <span class="query-text">population growth</span>
+                    </li>
+                    <li class="query-item">
+                        <svg class="query-icon clock-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        <span class="query-text">monthly expenses chart</span>
+                    </li>
+                </ul>
+
+                <!-- Suggested Searches Header -->
+                <div class="dropdown-header section-divider">
+                    <span class="header-title">Try searching for</span>
+                </div>
+
+                <!-- Suggested Search Queries -->
+                <ul class="query-list suggested-queries">
+                    <li class="query-item">
+                        <svg class="query-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <span class="query-text">usa gdp 2024</span>
+                    </li>
+                    <li class="query-item">
+                        <svg class="query-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <span class="query-text">climate trends dataset</span>
+                    </li>
+                    <li class="query-item">
+                        <svg class="query-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <span class="query-text">college tuition over time</span>
+                    </li>
+                    <li class="query-item">
+                        <svg class="query-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <span class="query-text">favorite foods survey</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <!-- Featured Stories -->
+        <div class="posts-section" id="featured-stories">
+
+            <h2>FEATURED STORIES</h2>
+
+            <div class="posts">
+
+
+                <!-- Post 1 -->
+                <div class="post">
+
+                    <div class="username">
+                        @user1_data
+                    </div>
+
+                    <div class="graph">
+                        GRAPH
+                    </div>
+
+                    <div class="post-title">
+                        Population Growth
+                    </div>
+
+                    <div class="post-info">
+                    <span style="font-size: 24px;">👁</span> 1,245 views
+                    &nbsp;&nbsp;
+                    <span style="font-size: 24px;">♥</span> 32 likes
+                    </div>
+
+                </div>
+
+
+                <!-- Post 2 -->
+                <div class="post">
+
+                    <div class="username">
+                        @user2_stats
+                    </div>
+
+                    <div class="graph">
+                        GRAPH
+                    </div>
+
+                    <div class="post-title">
+                        Monthly Expenses
+                    </div>
+
+                    <span style="font-size: 24px;">👁</span> 982 views
+                    &nbsp;&nbsp;
+                    <span style="font-size: 24px;">♥</span> 27 likes
+
+                </div>
+
+
+                <!-- Post 3 -->
+                <div class="post">
+
+                    <div class="username">
+                        @user3_visuals
+                    </div>
+
+                    <div class="graph">
+                        IMAGE
+                    </div>
+
+                    <div class="post-title">
+                        Favorite Foods
+                    </div>
+
+                    <span style="font-size: 24px;">👁</span> 756 views
+                    &nbsp;&nbsp;
+                    <span style="font-size: 24px;">♥</span> 19 likes
+                </div>
+
+                <!-- Post 4 -->
+                <div class="post">
+
+                        <div class="username">
+                            @user4_charts
+                        </div>
+
+                        <div class="graph">
+                            GRAPH
+                        </div>
+
+                        <div class="post-title">
+                            Climate Trends
+                        </div>
+
+                    <span style="font-size: 24px;">👁</span> 654 views
+                    &nbsp;&nbsp;
+                    <span style="font-size: 24px;">♥</span> 15 likes
+
+                </div>
+
+                <!-- Post 5 -->
+                <div class="post">
+
+                        <div class="username">
+                            @user5_data
+                        </div>
+
+                        <div class="graph">
+                            GRAPH
+                        </div>
+
+                        <div class="post-title">
+                            Movie Ratings
+                        </div>
+
+                    <span style="font-size: 24px;">👁</span> 842 views
+                    &nbsp;&nbsp;
+                    <span style="font-size: 24px;">♥</span> 21 likes
+
+                </div>
+
+                <!-- Post 6 -->
+                <div class="post">
+
+                        <div class="username">
+                            @user6_stats
+                        </div>
+
+                        <div class="graph">
+                            GRAPH
+                        </div>
+
+                        <div class="post-title">
+                            Fitness Progress
+                        </div>
+
+                    <span style="font-size: 24px;">👁</span> 712 views
+                    &nbsp;&nbsp;
+                    <span style="font-size: 24px;">♥</span> 18 likes
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+<!-- Upload section -->
+<div class="upload-box">
+    <input type="file" id="file-upload" hidden>
+
+    <label for="file-upload" class="upload-content">
+          <img
+            src="assets/upload icon.png"
+            alt=""
+            class="upload-icon"
+        >
+        <h3>Drop your files here</h3>
+        <p>or browse your computer</p>
+
+        <span class="upload-button">Choose file</span>
+    </label>
+</div>
+
+    </main>
+
+
+    <!-- Footer -->
+    <div class="footer">
+        © 2026 DataOwls
+    </div>
+
+
+</body>
+
+</html>
