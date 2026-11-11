@@ -8,6 +8,7 @@ import "./styles/auth.css";
 import "./styles/discover.css";
 import "./styles/story-editor.css";
 import "./styles/profile.css";
+import "./styles/post.css";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
