@@ -107,8 +107,18 @@ export function StaticPrototypePage({ page, user, onNavigate }) {
         if (q) onNavigate(`/search?q=${encodeURIComponent(q)}`);
       };
       const open = () => search.classList.add("open");
+      const close = () => search.classList.remove("open");
       const choose = (event) => goSearch(event.currentTarget.querySelector(".query-text")?.textContent ?? "");
-      const submit = (event) => { if (event.key === "Enter") goSearch(input.value); };
+      const submit = (event) => {
+        if (event.key === "Enter") goSearch(input.value);
+        if (event.key === "Escape") { close(); input.blur(); }
+      };
+      // close when focus leaves the whole search box (click elsewhere, Tab away)
+      const onFocusOut = (event) => { if (!search.contains(event.relatedTarget)) close(); };
+      // clicking dropdown text/padding shouldn't steal focus, or the dropdown
+      // would close before the click on a suggestion lands
+      const keepFocus = (event) => { if (!event.target.closest("a, button")) event.preventDefault(); };
+      const dropdown = search.querySelector(".search-dropdown");
       const clear = () => {
         clearRecent(container);
         input.focus();
@@ -117,12 +127,16 @@ export function StaticPrototypePage({ page, user, onNavigate }) {
       const clearBtn = container.querySelector(".clear-btn");
       input.addEventListener("focus", open);
       input.addEventListener("keydown", submit);
+      search.addEventListener("focusout", onFocusOut);
+      dropdown?.addEventListener("mousedown", keepFocus);
       container.querySelectorAll(".query-item").forEach((item) => item.addEventListener("click", choose));
       clearBtn?.addEventListener("click", clear);
       if (localStorage.getItem(CLEARED_KEY)) clearRecent(container);
       cleanups.push(() => {
         input.removeEventListener("focus", open);
         input.removeEventListener("keydown", submit);
+        search.removeEventListener("focusout", onFocusOut);
+        dropdown?.removeEventListener("mousedown", keepFocus);
         container.querySelectorAll(".query-item").forEach((item) => item.removeEventListener("click", choose));
         clearBtn?.removeEventListener("click", clear);
       });
