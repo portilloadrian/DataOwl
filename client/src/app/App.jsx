@@ -6,7 +6,7 @@ import { StaticPrototypePage } from "../pages/StaticPrototypePage.jsx";
 import { supabase } from "../lib/supabaseClient.js";
 
 function getPath() {
-  return window.location.pathname.replace(/\/$/, "") || "/";
+  return (window.location.pathname.replace(/\/$/, "") || "/") + window.location.search;
 }
 
 function navigate(path) {
@@ -15,7 +15,8 @@ function navigate(path) {
 }
 
 export default function App() {
-  const [path, setPath] = useState(getPath);
+  const [fullPath, setPath] = useState(getPath);
+  const path = fullPath.split("?")[0];
   const [user, setUser] = useState(null);
   const [authLoading, setAuthLoading] = useState(true);
 
@@ -35,7 +36,7 @@ export default function App() {
   }, []);
 
   function handleNavigate(nextPath) {
-    if (nextPath !== path) navigate(nextPath);
+    if (nextPath !== fullPath) navigate(nextPath);
   }
 
   if (authLoading) return <div className="auth-loading">Loading DataOwls...</div>;
@@ -63,6 +64,9 @@ export default function App() {
       break;
     case "/profile":
       page = <StaticPrototypePage page="profile" user={user} onNavigate={handleNavigate} />;
+      break;
+    case "/search":
+      page = <StaticPrototypePage key={fullPath} page="search" user={user} onNavigate={handleNavigate} />;
       break;
     default:
       page = <StaticPrototypePage page="home" user={user} onNavigate={handleNavigate} />;
