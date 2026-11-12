@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef } from "react";
 import homeMarkup from "./content/home.html?raw";
+import postMarkup from "./content/post.html?raw";
 import discoverMarkup from "./content/discover.html?raw";
 import loginMarkup from "./content/login.html?raw";
 import profileMarkup from "./content/profile.html?raw";
@@ -21,6 +22,7 @@ import searchMarkup from "./content/search.html?raw";
 
 const markupByPage = {
   home: homeMarkup,
+  post: postMarkup,
   discover: discoverMarkup,
   login: loginMarkup,
   profile: profileMarkup,

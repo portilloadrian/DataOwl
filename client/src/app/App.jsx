@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { AuthPage } from "../pages/AuthPage.jsx";
 import { CreateStoryPage } from "../pages/CreateStoryPage.jsx";
+import { PostPage } from "../pages/PostPage.jsx";
 import { StaticPrototypePage } from "../pages/StaticPrototypePage.jsx";
 import { supabase } from "../lib/supabaseClient.js";
 
@@ -40,8 +41,9 @@ export default function App() {
 
   if (authLoading) return <div className="auth-loading">Loading DataOwls...</div>;
 
+  const postMatch = path.match(/^\/post\/([\w-]+)$/);
   let page;
-  switch (path) {
+  switch (postMatch ? "/post" : path) {
     case "/":
       page = <StaticPrototypePage page="home" user={user} onNavigate={handleNavigate} />;
       break;
@@ -56,6 +58,9 @@ export default function App() {
       break;
     case "/stories/new":
       page = <CreateStoryPage user={user} onNavigate={handleNavigate} />;
+      break;
+    case "/post":
+      page = <PostPage id={postMatch[1]} user={user} onNavigate={handleNavigate} />;
       break;
     case "/profile":
       page = <StaticPrototypePage page="profile" user={user} onNavigate={handleNavigate} />;

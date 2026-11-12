@@ -1,0 +1,72 @@
+    <header class="site-header">
+
+        <div class="site-header__inner">
+
+            <!-- DataOwls wordmark -->
+            <div class="title">
+
+            <img src="assets/owl-d.png" alt="D" class="logo-owl">
+            <span class="logo-letter">a</span>
+            <span class="logo-letter">t</span>
+            <span class="logo-letter">a</span>
+            <span class="logo-letter">O</span>
+            <span class="logo-letter">w</span>
+            <span class="logo-letter">l</span>
+            <span class="logo-letter">s</span>
+
+            </div>
+
+
+            <!-- Navigation -->
+            <nav class="navigation">
+
+                <a href="#featured-stories">Explore Stories</a>
+
+                <a href="pages/discover.html">Discover</a>
+
+            </nav>
+
+
+            <!-- Login / Sign Up -->
+            <div class="auth-acts" aria-label="Account actions">
+                <a class="login-button" href="pages/login.html">
+                    Login
+                </a>
+                <a class="signup-button" href="pages/signup.html">
+                    Sign Up
+                </a>
+                <!-- Default account icon links to the profile page. -->
+                <a class="profile-link" href="pages/profile.html" aria-label="View profile" title="Profile">
+                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <circle cx="12" cy="8" r="3.5"></circle>
+                        <path d="M5.5 20a6.5 6.5 0 0 1 13 0"></path>
+                    </svg>
+                </a>
+            </div>
+            
+
+        </div>
+
+    </header>
+
+    <main class="post-page">
+
+        <a class="post-back" href="../index.html">&larr; Back to stories</a>
+
+        <article class="post-detail">
+            <p class="post-author" data-post="author"></p>
+            <h1 class="post-heading" data-post="title"></h1>
+
+            <div class="post-graph" aria-label="Chart placeholder">GRAPH</div>
+
+            <p class="post-views"><span data-post="views"></span> views</p>
+
+            <!-- React mounts the like button here (see PostPage.jsx) -->
+            <div id="like-root"></div>
+        </article>
+
+    </main>
+
+    <div class="footer">
+        © 2026 DataOwls
+    </div>
