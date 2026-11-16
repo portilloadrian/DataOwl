@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef } from "react";
 import homeMarkup from "./content/home.html?raw";
+import { clearRecent, getRecentSearches, recentPeopleCleared, recordSearch } from "../lib/recentSearches.js";
 import discoverMarkup from "./content/discover.html?raw";
 import loginMarkup from "./content/login.html?raw";
 import profileMarkup from "./content/profile.html?raw";
@@ -69,14 +70,46 @@ function rewriteMarkup(markup, user) {
   return rewritten;
 }
 
-const CLEARED_KEY = "dataowls-recent-cleared";
+// Same clock icon the markup used for the old hardcoded history rows.
+function clockIcon() {
+  const ns = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(ns, "svg");
+  const attrs = { class: "query-icon clock-icon", viewBox: "0 0 24 24", width: "18", height: "18", fill: "none", stroke: "currentColor", "stroke-width": "2" };
+  Object.entries(attrs).forEach(([name, value]) => svg.setAttribute(name, value));
+  const circle = document.createElementNS(ns, "circle");
+  circle.setAttribute("cx", "12");
+  circle.setAttribute("cy", "12");
+  circle.setAttribute("r", "10");
+  const hands = document.createElementNS(ns, "polyline");
+  hands.setAttribute("points", "12 6 12 12 16 14");
+  svg.append(circle, hands);
+  return svg;
+}
 
-// "Clear all": remove recent people + history, keep the suggestions.
-function clearRecent(container) {
-  container.querySelector(".recent-people-row")?.remove();
-  container.querySelector(".recent-queries")?.remove();
-  container.querySelector(".clear-btn")?.remove();
-  if (!container.querySelector(".recent-empty")) {
+// Rebuild the "Recent" part of the search dropdown from what is stored:
+// the search history list, the sample people row (until cleared), and the
+// empty message / Clear all button.
+function renderRecent(container) {
+  if (recentPeopleCleared()) container.querySelector(".recent-people-row")?.remove();
+
+  const list = container.querySelector(".recent-queries");
+  const searches = getRecentSearches();
+  list?.replaceChildren(...searches.map((query) => {
+    const item = document.createElement("li");
+    item.className = "query-item";
+    const text = document.createElement("span");
+    text.className = "query-text";
+    text.textContent = query; // textContent: the query is user input
+    item.append(clockIcon(), text);
+    return item;
+  }));
+
+  const hasRecent = searches.length > 0 || Boolean(container.querySelector(".recent-people-row"));
+  container.querySelector(".clear-btn")?.toggleAttribute("hidden", !hasRecent);
+  const empty = container.querySelector(".recent-empty");
+  if (hasRecent) {
+    empty?.remove();
+  } else if (!empty) {
     const msg = document.createElement("p");
     msg.className = "recent-empty";
     msg.textContent = "No recent searches";
@@ -104,11 +137,17 @@ export function StaticPrototypePage({ page, user, onNavigate }) {
     if (search && input) {
       const goSearch = (query) => {
         const q = query.trim();
-        if (q) onNavigate(`/search?q=${encodeURIComponent(q)}`);
+        if (!q) return;
+        recordSearch(q);
+        onNavigate(`/search?q=${encodeURIComponent(q)}`);
       };
       const open = () => search.classList.add("open");
       const close = () => search.classList.remove("open");
-      const choose = (event) => goSearch(event.currentTarget.querySelector(".query-text")?.textContent ?? "");
+      // one listener for every row, since the history rows are built at runtime
+      const choose = (event) => {
+        const item = event.target.closest(".query-item");
+        if (item) goSearch(item.querySelector(".query-text")?.textContent ?? "");
+      };
       const submit = (event) => {
         if (event.key === "Enter") goSearch(input.value);
         if (event.key === "Escape") { close(); input.blur(); }
@@ -120,24 +159,24 @@ export function StaticPrototypePage({ page, user, onNavigate }) {
       const keepFocus = (event) => { if (!event.target.closest("a, button")) event.preventDefault(); };
       const dropdown = search.querySelector(".search-dropdown");
       const clear = () => {
-        clearRecent(container);
-        input.focus();
-        localStorage.setItem(CLEARED_KEY, "1");
+        clearRecent();
+        renderRecent(container);
+        input.focus(); // keep the dropdown open
       };
       const clearBtn = container.querySelector(".clear-btn");
       input.addEventListener("focus", open);
       input.addEventListener("keydown", submit);
       search.addEventListener("focusout", onFocusOut);
       dropdown?.addEventListener("mousedown", keepFocus);
-      container.querySelectorAll(".query-item").forEach((item) => item.addEventListener("click", choose));
+      dropdown?.addEventListener("click", choose);
       clearBtn?.addEventListener("click", clear);
-      if (localStorage.getItem(CLEARED_KEY)) clearRecent(container);
+      renderRecent(container);
       cleanups.push(() => {
         input.removeEventListener("focus", open);
         input.removeEventListener("keydown", submit);
         search.removeEventListener("focusout", onFocusOut);
         dropdown?.removeEventListener("mousedown", keepFocus);
-        container.querySelectorAll(".query-item").forEach((item) => item.removeEventListener("click", choose));
+        dropdown?.removeEventListener("click", choose);
         clearBtn?.removeEventListener("click", clear);
       });
     }
