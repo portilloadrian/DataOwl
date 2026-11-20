@@ -29,7 +29,17 @@ const markupByPage = {
   search: searchMarkup,
 };
 
-function rewriteMarkup(markup, user) {
+// The search box lives in home.html; discover/profile reuse it instead of copying it.
+const searchBox = homeMarkup.match(/<!-- Search \(moved into the nav\) -->[\s\S]*?(?=\s*<\/nav>)/)[0];
+
+function withSearchBox(markup) {
+  return markup
+    .replace(/\s*<a href="[^"]*#featured-stories">Explore Stories<\/a>/, "")
+    .replace("</nav>", `${searchBox}</nav>`);
+}
+
+function rewriteMarkup(rawMarkup, user, page) {
+  const markup = page === "discover" || page === "profile" ? withSearchBox(rawMarkup) : rawMarkup;
   const assignedIcon = { "noun_Owl_7392195.svg": icon7392195, "noun_Owl_7417114.svg": icon7417114, "noun_Owl_7562088.svg": icon7562088, "noun_Owl_7834524.svg": icon7834524 }[user?.user_metadata?.icon_key];
   const rewritten = markup
     .replaceAll('src="../assets/owl-d.png"', `src="${owlMark}"`)
@@ -118,7 +128,7 @@ function renderRecent(container) {
 }
 
 export function StaticPrototypePage({ page, user, onNavigate }) {
-  const markup = useMemo(() => rewriteMarkup(markupByPage[page], user), [page, user]);
+  const markup = useMemo(() => rewriteMarkup(markupByPage[page], user, page), [page, user]);
   const containerRef = useRef(null);
 
   useEffect(() => {
