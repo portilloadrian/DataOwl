@@ -18,6 +18,10 @@ import icon7417114 from "../assets/noun_Owl_7417114.svg";
 import icon7562088 from "../assets/noun_Owl_7562088.svg";
 import icon7834524 from "../assets/noun_Owl_7834524.svg";
 import searchMarkup from "./content/search.html?raw";
+import food1 from "../assets/food-1.jfif";
+import food2 from "../assets/food-2.jfif";
+import food3 from "../assets/food-3.jfif";
+import food4 from "../assets/food-4.jfif";
 
 const markupByPage = {
   home: homeMarkup,
@@ -35,6 +39,10 @@ function rewriteMarkup(markup, user) {
     .replaceAll('src="assets/owl-d.png"', `src="${owlMark}"`)
     .replaceAll('src="owl.png"', `src="${assignedIcon ?? owlMark}"`)
     .replaceAll('src="assets/upload icon.png"', `src="${uploadIcon}"`)
+    .replaceAll('src="assets/food-1.jfif"', `src="${food1}"`)
+    .replaceAll('src="assets/food-2.jfif"', `src="${food2}"`)
+    .replaceAll('src="assets/food-3.jfif"', `src="${food3}"`)
+    .replaceAll('src="assets/food-4.jfif"', `src="${food4}"`)
     .replaceAll('src="../assets/dataowls-logo.jpg"', `src="${assignedIcon ?? logoImage}"`)
     .replaceAll('src="assets/dataowls-logo.jpg"', `src="${logoImage}"`)
     .replaceAll('src="../assets/pinned.png"', `src="${pinnedIcon}"`)
