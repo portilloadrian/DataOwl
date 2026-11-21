@@ -6,7 +6,20 @@ The product goal is simple: make data easier to understand by pairing visual evi
 
 ## Project status
 
-The repository is currently moving from a static HTML/CSS prototype to a React and Express application. The existing prototype files are being retained temporarily while their useful design work is migrated into the new `client/` application.
+The React/Vite client is now the active frontend. Supabase Auth is connected to the client, and the initial PostgreSQL migrations are in `database/`. The Express API is still under construction.
+
+## Quick start
+
+See [`docs/development-setup.md`](docs/development-setup.md) for the full contributor setup, including Supabase configuration and database migrations.
+
+From `CS2250-Project/`:
+
+```powershell
+npm install
+npm run dev --workspace client
+```
+
+The client requires `client/.env.local` with `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY`. Copy [`client/.env.example`](client/.env.example) to create the template.
 
 ## Repository structure
 
@@ -17,7 +30,7 @@ CS2250-Project/
 ├── shared/                 # Browser/server-safe contracts and schemas
 ├── database/               # Migrations and development seeds
 ├── docs/                   # Architecture, API, data model, and demo notes
-├── legacy/                 # Temporary static prototype during migration
+├── legacy/                 # Preserved static prototype backup; do not add new product code
 ├── .github/                # CI and repository automation
 ├── .env.example            # Documented environment-variable template
 ├── CONTRIBUTING.md         # Naming and collaboration standards
@@ -93,8 +106,8 @@ The recommended first stretch features are pinned comments and filterable charts
 - Editor interactions: `dnd-kit`.
 - Backend: Node.js + Express.
 - Database: PostgreSQL through Supabase or Neon.
-- Authentication: Supabase Auth or custom JWT, pending the team’s final decision.
-- Storage: Supabase Storage or another object-storage provider for CSV files.
+- Authentication: Supabase Auth.
+- Data processing: process CSV files and retain only chart-ready derived data; do not store original CSV files.
 - Hosting: Vercel for the frontend and Render/Railway for the API, or an all-in-one deployment.
 
 ## Development standards
@@ -120,9 +133,8 @@ More collaboration guidance is available in [`CONTRIBUTING.md`](CONTRIBUTING.md)
 4. Public experience: implement the feed, story viewer, comments, and interactive charts.
 5. Polish: improve responsive behavior, loading/error states, accessibility, testing, security, and one or two stretch features.
 
-## Open decisions
+## Current limitations
 
-- Supabase-managed services versus a custom Express/Postgres/JWT backend.
-- Whether to use Tailwind or continue with the current custom CSS system.
-- CI and automated-testing depth appropriate for the class timeline.
-- Which one or two stretch features will be completed after the MVP.
+- The Express API is not implemented yet; the current client uses Supabase Auth directly.
+- Story drafts and chart processing are not persisted yet.
+- Automated tests and server-side authorization are still planned work.

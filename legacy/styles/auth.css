@@ -1,0 +1,240 @@
+/* Shared page layout and typography */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+}
+
+/* Header and brand links */
+.auth-header {
+    min-height: 68px;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--surface);
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+.auth-brand {
+    display: inline-flex;
+    align-items: center;
+    color: var(--text);
+    font-family: var(--font-brand);
+    font-size: 2rem;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* The owl forms the first letter of the wordmark, matching the homepage. */
+.logo-owl {
+    display: block;
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    margin-right: -5px;
+}
+
+.logo-owl,
+.logo-letter {
+    display: inline-block;
+}
+
+/* Repeat the homepage's staggered hover bounce on the account-page wordmark. */
+.auth-brand:hover .logo-owl {
+    animation: snake-bounce 0.55s ease both;
+    animation-delay: 0s;
+}
+
+.auth-brand:hover .logo-letter:nth-of-type(1) {
+    animation: snake-bounce 0.55s ease both;
+    animation-delay: 0.07s;
+}
+
+.auth-brand:hover .logo-letter:nth-of-type(2) {
+    animation: snake-bounce 0.55s ease both;
+    animation-delay: 0.14s;
+}
+
+.auth-brand:hover .logo-letter:nth-of-type(3) {
+    animation: snake-bounce 0.55s ease both;
+    animation-delay: 0.21s;
+}
+
+.auth-brand:hover .logo-letter:nth-of-type(4) {
+    animation: snake-bounce 0.55s ease both;
+    animation-delay: 0.28s;
+}
+
+.auth-brand:hover .logo-letter:nth-of-type(5) {
+    animation: snake-bounce 0.55s ease both;
+    animation-delay: 0.35s;
+}
+
+.auth-brand:hover .logo-letter:nth-of-type(6) {
+    animation: snake-bounce 0.55s ease both;
+    animation-delay: 0.42s;
+}
+
+.auth-brand:hover .logo-letter:nth-of-type(7) {
+    animation: snake-bounce 0.55s ease both;
+    animation-delay: 0.49s;
+}
+
+@keyframes snake-bounce {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+
+    35% {
+        transform: translateY(-9px) rotate(-5deg);
+    }
+
+    65% {
+        transform: translateY(2px) rotate(4deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .auth-brand:hover .logo-owl,
+    .auth-brand:hover .logo-letter {
+        animation: none;
+    }
+}
+
+.header-link,
+.auth-card a,
+.auth-footer a {
+    color: var(--text);
+    text-decoration-color: var(--secondary-color);
+    text-underline-offset: 3px;
+}
+
+.header-link:hover,
+.auth-card a:hover,
+.auth-footer a:hover {
+    color: var(--primary-color);
+}
+
+/* Centered account form card */
+.auth-main {
+    width: 100%;
+    flex: 1;
+    padding: 48px 20px;
+    display: grid;
+    place-items: center;
+}
+
+.auth-card {
+    width: min(100%, 420px);
+    padding: 32px;
+    background: var(--surface);
+    border: 1px solid var(--secondary-color);
+    border-radius: 6px;
+}
+
+.auth-card h1 {
+    margin: 0;
+    font-family: var(--font-brand);
+    font-size: 1.9rem;
+}
+
+.auth-intro {
+    margin: 10px 0 26px;
+    color: var(--muted-color);
+    line-height: 1.5;
+}
+
+/* Form fields and primary action */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.auth-form label {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.auth-form input {
+    width: 100%;
+    min-height: 44px;
+    margin-bottom: 8px;
+    padding: 10px 12px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 4px;
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
+}
+
+.auth-form input:focus {
+    outline: 2px solid var(--secondary-color);
+    outline-offset: 1px;
+}
+
+.label-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.label-row a,
+.auth-switch {
+    font-size: 0.9rem;
+}
+
+.submit-button {
+    min-height: 44px;
+    margin-top: 6px;
+    padding: 10px 16px;
+    border: 0;
+    border-radius: 4px;
+    background: var(--primary-color);
+    color: var(--surface);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background: var(--highlight-color);
+}
+
+/* Account links and page footer */
+.auth-switch {
+    margin: 22px 0 0;
+    text-align: center;
+}
+
+.auth-footer {
+    padding: 18px 24px;
+    color: var(--muted-color);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* Keep the form comfortable on narrow screens */
+@media (max-width: 480px) {
+    .auth-header {
+        padding-inline: 16px;
+    }
+
+    .auth-main {
+        padding: 28px 16px;
+    }
+
+    .auth-card {
+        padding: 24px 20px;
+    }
+}
