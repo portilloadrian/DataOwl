@@ -12,9 +12,7 @@
 
 </head>
 
-
 <body>
-
 
     <!-- Landing Page Header -->
     <header class="site-header">
@@ -32,9 +30,7 @@
             <span class="logo-letter">w</span>
             <span class="logo-letter">l</span>
             <span class="logo-letter">s</span>
-
             </div>
-
 
             <!-- Navigation -->
             <nav class="navigation">
@@ -147,9 +143,7 @@
                     </ul>
                 </div>
             </div>
-
             </nav>
-
 
             <!-- Login / Sign Up -->
             <div class="auth-acts" aria-label="Account actions">
@@ -166,13 +160,9 @@
                         <path d="M5.5 20a6.5 6.5 0 0 1 13 0"></path>
                     </svg>
                 </a>
-            </div>
-            
-
+            </div>            
         </div>
-
     </header>
-
 
     <!-- History of posts the user has interacted with (sample data for now) -->
     <aside class="history-sidebar" aria-label="Post history">
@@ -187,7 +177,6 @@
 
     <!-- Main Page Content -->
     <main class="main-content">
-
 
         <!-- Brand mark and tagline introduce the homepage search. -->
         <section class="hero-intro" aria-label="DataOwls introduction">
@@ -250,14 +239,14 @@
             <p class="tagline">Upload data. Create visuals. Share insights</p>
         </section>
 
-
         <!-- Featured Stories -->
         <div class="posts-section" id="featured-stories">
 
-            <h2>FEATURED STORIES</h2>
+            <h2 class="featured-heading">
+            <span>✦ FEATURED STORIES</span>
+            </h2>
 
             <div class="posts">
-
 
                 <!-- Post 1 -->
                 <div class="post">
@@ -267,7 +256,13 @@
                     </div>
 
                     <div class="graph">
-                        GRAPH
+                        <div class="chart-preview">
+                            <div class="chart-bar" style="height: 35px"></div>
+                            <div class="chart-bar" style="height: 50px"></div>
+                            <div class="chart-bar" style="height: 65px"></div>
+                            <div class="chart-bar" style="height: 80px"></div>
+                            <div class="chart-bar" style="height: 95px"></div>
+                        </div>
                     </div>
 
                     <div class="post-title">
@@ -279,9 +274,7 @@
                     &nbsp;&nbsp;
                     <span style="font-size: 24px;">♥</span> 32 likes
                     </div>
-
                 </div>
-
 
                 <!-- Post 2 -->
                 <div class="post">
@@ -291,7 +284,13 @@
                     </div>
 
                     <div class="graph">
-                        GRAPH
+                        <div class="chart-preview">
+                            <div class="chart-bar" style="height: 75px;"></div>
+                            <div class="chart-bar" style="height: 45px;"></div>
+                            <div class="chart-bar" style="height: 90px;"></div>
+                            <div class="chart-bar" style="height: 60px;"></div>
+                            <div class="chart-bar" style="height: 35px;"></div>
+                        </div>
                     </div>
 
                     <div class="post-title">
@@ -304,7 +303,6 @@
 
                 </div>
 
-
                 <!-- Post 3 -->
                 <div class="post">
 
@@ -312,8 +310,11 @@
                         @user3_visuals
                     </div>
 
-                    <div class="graph">
-                        IMAGE
+                    <div class="graph food-gallery">
+                        <img src="assets/food-1.jfif" alt="Favorite food 1">
+                        <img src="assets/food-2.jfif" alt="Favorite food 2">
+                        <img src="assets/food-3.jfif" alt="Favorite food 3">
+                        <img src="assets/food-4.jfif" alt="Favorite food 4">
                     </div>
 
                     <div class="post-title">
@@ -328,70 +329,111 @@
                 <!-- Post 4 -->
                 <div class="post">
 
-                        <div class="username">
-                            @user4_charts
-                        </div>
+                <div class="username">
+                @user4_charts
+                </div>
 
-                        <div class="graph">
-                            GRAPH
-                        </div>
+                <div class="graph climate-chart">
+                <div class="cloud cloud-one"></div>
+                <div class="cloud cloud-two"></div>
 
-                        <div class="post-title">
-                            Climate Trends
-                        </div>
+                <div class="temperature-graph">
+                    <div class="temperature-line"></div>
+                    <span class="temperature-point point-1"></span>
+                    <span class="temperature-point point-2"></span>
+                    <span class="temperature-point point-3"></span>
+                    <span class="temperature-point point-4"></span>
+                    <span class="temperature-point point-5"></span>
+                    </div>
+                </div>
 
-                    <span style="font-size: 24px;">👁</span> 654 views
-                    &nbsp;&nbsp;
-                    <span style="font-size: 24px;">♥</span> 15 likes
+                <div class="post-title">
+                Climate Trends
+                </div>
 
+                <span style="font-size: 24px;">👁</span> 654 views
+                &nbsp;&nbsp;
+                <span style="font-size: 24px;">♥</span> 15 likes
                 </div>
 
                 <!-- Post 5 -->
-                <div class="post">
+<div class="post">
 
-                        <div class="username">
-                            @user5_data
-                        </div>
+    <div class="username">
+        @user5_data
+    </div>
 
-                        <div class="graph">
-                            GRAPH
-                        </div>
+    <div class="graph movie-rating">
 
-                        <div class="post-title">
-                            Movie Ratings
-                        </div>
+        <div class="movie-camera">
+            <div class="camera-reel reel-left"></div>
+            <div class="camera-reel reel-right"></div>
 
-                    <span style="font-size: 24px;">👁</span> 842 views
-                    &nbsp;&nbsp;
-                    <span style="font-size: 24px;">♥</span> 21 likes
-
-                </div>
-
-                <!-- Post 6 -->
-                <div class="post">
-
-                        <div class="username">
-                            @user6_stats
-                        </div>
-
-                        <div class="graph">
-                            GRAPH
-                        </div>
-
-                        <div class="post-title">
-                            Fitness Progress
-                        </div>
-
-                    <span style="font-size: 24px;">👁</span> 712 views
-                    &nbsp;&nbsp;
-                    <span style="font-size: 24px;">♥</span> 18 likes
-
-                </div>
-
+            <div class="camera-body">
+                <div class="camera-lens"></div>
             </div>
 
+            <div class="camera-handle"></div>
+            <div class="camera-leg"></div>
         </div>
 
+        <div class="movie-stars">
+            ★ ★ ★ ★ ★
+        </div>
+
+    </div>
+
+    <div class="post-title">
+        Movie Ratings
+    </div>
+
+    <span style="font-size: 24px;">👁</span> 842 views
+    &nbsp;&nbsp;
+    <span style="font-size: 24px;">♥</span> 21 likes
+
+</div>
+
+               <!-- Post 6 -->
+<div class="post">
+
+    <div class="username">
+        @user6_stats
+    </div>
+
+    <div class="graph fitness-chart">
+
+        <div class="fitness-icon">🏃</div>
+
+        <div class="fitness-bars">
+            <div class="fitness-bar">
+                <span style="height: 35%;"></span>
+            </div>
+            <div class="fitness-bar">
+                <span style="height: 55%;"></span>
+            </div>
+            <div class="fitness-bar">
+                <span style="height: 45%;"></span>
+            </div>
+            <div class="fitness-bar">
+                <span style="height: 75%;"></span>
+            </div>
+            <div class="fitness-bar">
+                <span style="height: 90%;"></span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="post-title">
+        Fitness Progress
+    </div>
+
+    <span style="font-size: 24px;">👁</span> 923 views
+    &nbsp;&nbsp;
+    <span style="font-size: 24px;">♥</span> 28 likes
+
+</div>
+</div> <!-- End of posts container -->
 
 <!-- Upload section -->
 <div class="upload-box">
