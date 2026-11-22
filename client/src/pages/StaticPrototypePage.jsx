@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef } from "react";
+import { supabase } from "../lib/supabaseClient.js";
 import homeMarkup from "./content/home.html?raw";
 import discoverMarkup from "./content/discover.html?raw";
 import loginMarkup from "./content/login.html?raw";
@@ -32,9 +33,13 @@ const markupByPage = {
   search: searchMarkup,
 };
 
+const recentSearchesKey = "dataowls-recent-searches";
+const recentlyViewedKey = "dataowls-recently-viewed";
+const persistentSearchMarkup = `<div class="search-combobox" id="searchCombobox"><div class="search-input-wrapper"><svg class="search-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg><input type="text" class="search-input" placeholder="Search datasets, people, or posts..." aria-label="Search" aria-expanded="false" aria-controls="searchDropdown" /></div><div class="search-dropdown" id="searchDropdown" role="listbox"><div class="dropdown-header"><span class="header-title">Recent</span><button type="button" class="clear-btn">Clear all</button></div><div class="recent-people-row"></div><ul class="query-list recent-queries"></ul><div class="dropdown-header section-divider"><span class="header-title">Try searching for</span></div><ul class="query-list suggested-queries"><li class="query-item"><span class="query-text">usa gdp 2024</span></li><li class="query-item"><span class="query-text">climate trends dataset</span></li><li class="query-item"><span class="query-text">college tuition over time</span></li><li class="query-item"><span class="query-text">favorite foods survey</span></li></ul></div></div>`;
+
 function rewriteMarkup(markup, user) {
   const assignedIcon = { "noun_Owl_7392195.svg": icon7392195, "noun_Owl_7417114.svg": icon7417114, "noun_Owl_7562088.svg": icon7562088, "noun_Owl_7834524.svg": icon7834524 }[user?.user_metadata?.icon_key];
-  const rewritten = markup
+  let rewritten = markup
     .replaceAll('src="../assets/owl-d.png"', `src="${owlMark}"`)
     .replaceAll('src="assets/owl-d.png"', `src="${owlMark}"`)
     .replaceAll('src="owl.png"', `src="${assignedIcon ?? owlMark}"`)
@@ -68,11 +73,11 @@ function rewriteMarkup(markup, user) {
     .replaceAll("signup.html", "/signup")
     .replaceAll("profile.html", "/profile");
 
+  if (!rewritten.includes("search-combobox")) rewritten = rewritten.replace("</nav>", `${persistentSearchMarkup}</nav>`);
+
   if (user && rewritten.includes('class="auth-acts"')) {
-    return rewritten.replace(
-      '<div class="auth-acts" aria-label="Account actions">',
-      '<div class="auth-acts" aria-label="Account actions"><a class="create-story-link" href="/stories/new">Create a story</a>',
-    );
+    rewritten = rewritten.replace(/<a class="login-button"[\s\S]*?<\/a>\s*<a class="signup-button"[\s\S]*?<\/a>/, '<button class="signout-button" type="button">Sign out</button>');
+    rewritten = rewritten.replace("</nav>", '<a class="create-story-link" href="/stories/new" aria-label="Create a story" title="Create a story">+</a></nav>');
   }
   return rewritten;
 }
@@ -92,6 +97,51 @@ function clearRecent(container) {
   }
 }
 
+function readList(key) {
+  try { return JSON.parse(localStorage.getItem(key) ?? "[]"); } catch { return []; }
+}
+
+function applySearchHistory(container) {
+  container.querySelector(".recent-people-row")?.replaceChildren();
+  const list = container.querySelector(".recent-queries");
+  if (!list) return;
+  list.replaceChildren();
+  readList(recentSearchesKey).slice(0, 5).forEach((query) => {
+    const item = document.createElement("li");
+    item.className = "query-item";
+    const text = document.createElement("span");
+    text.className = "query-text";
+    text.textContent = query;
+    item.append(text);
+    list.append(item);
+  });
+}
+
+function applyRecentlyViewed(container) {
+  const list = container.querySelector(".history-list");
+  if (!list) return;
+  list.replaceChildren();
+  const items = readList(recentlyViewedKey);
+  if (!items.length) {
+    const empty = document.createElement("li");
+    empty.className = "history-empty";
+    empty.textContent = "Stories you open will appear here.";
+    list.append(empty);
+    return;
+  }
+  items.slice(0, 5).forEach((item) => {
+    const row = document.createElement("li");
+    const title = document.createElement("span");
+    title.className = "history-post";
+    title.textContent = item.title;
+    const user = document.createElement("span");
+    user.className = "history-user";
+    user.textContent = item.user;
+    row.append(title, user);
+    list.append(row);
+  });
+}
+
 export function StaticPrototypePage({ page, user, onNavigate }) {
   const markup = useMemo(() => rewriteMarkup(markupByPage[page], user), [page, user]);
   const containerRef = useRef(null);
@@ -109,10 +159,17 @@ export function StaticPrototypePage({ page, user, onNavigate }) {
     const search = container.querySelector(".search-combobox");
     const input = container.querySelector(".search-input");
 
+    applyRecentlyViewed(container);
+    applySearchHistory(container);
+
     if (search && input) {
       const goSearch = (query) => {
         const q = query.trim();
-        if (q) onNavigate(`/search?q=${encodeURIComponent(q)}`);
+        if (q) {
+          const next = [q, ...readList(recentSearchesKey).filter((item) => item !== q)].slice(0, 5);
+          localStorage.setItem(recentSearchesKey, JSON.stringify(next));
+          onNavigate(`/search?q=${encodeURIComponent(q)}`);
+        }
       };
       const open = () => search.classList.add("open");
       const close = () => search.classList.remove("open");
@@ -149,6 +206,29 @@ export function StaticPrototypePage({ page, user, onNavigate }) {
         clearBtn?.removeEventListener("click", clear);
       });
     }
+
+    const recordViewed = (event) => {
+      const item = event.target.closest(".post, .story-card");
+      if (!item) return;
+      const title = item.querySelector(".post-title, .story-card__title")?.textContent.trim();
+      if (!title) return;
+      const username = item.querySelector(".username, .creator")?.textContent.trim() ?? "DataOwls";
+      const next = [{ title, user: username }, ...readList(recentlyViewedKey).filter((entry) => entry.title !== title)].slice(0, 5);
+      localStorage.setItem(recentlyViewedKey, JSON.stringify(next));
+      applyRecentlyViewed(container);
+    };
+    container.addEventListener("click", recordViewed);
+    cleanups.push(() => container.removeEventListener("click", recordViewed));
+
+    const signout = container.querySelector(".signout-button");
+    const signOut = () => supabase.auth.signOut();
+    signout?.addEventListener("click", signOut);
+    cleanups.push(() => signout?.removeEventListener("click", signOut));
+
+    const uploadContent = container.querySelector(".upload-content");
+    const openStoryEditor = (event) => { event.preventDefault(); onNavigate("/stories/new"); };
+    uploadContent?.addEventListener("click", openStoryEditor);
+    cleanups.push(() => uploadContent?.removeEventListener("click", openStoryEditor));
 
     if (page === "discover") {
       const topics = [...container.querySelectorAll(".topic-list li")];

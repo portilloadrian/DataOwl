@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { AuthPage } from "../pages/AuthPage.jsx";
 import { CreateStoryPage } from "../pages/CreateStoryPage.jsx";
 import { StaticPrototypePage } from "../pages/StaticPrototypePage.jsx";
+import { StoryViewerPage } from "../pages/StoryViewerPage.jsx";
 import { supabase } from "../lib/supabaseClient.js";
 
 function getPath() {
@@ -34,6 +35,10 @@ export default function App() {
     return () => window.removeEventListener("popstate", handlePopState);
   }, []);
 
+  useEffect(() => {
+    if (!authLoading && path === "/profile" && !user) navigate("/login");
+  }, [authLoading, path, user]);
+
   function handleNavigate(nextPath) {
     if (nextPath !== fullPath) navigate(nextPath);
   }
@@ -57,14 +62,21 @@ export default function App() {
     case "/stories/new":
       page = <CreateStoryPage user={user} onNavigate={handleNavigate} />;
       break;
+    case "/stories/new/preview":
+      page = <CreateStoryPage preview onNavigate={handleNavigate} />;
+      break;
     case "/profile":
-      page = <StaticPrototypePage page="profile" user={user} onNavigate={handleNavigate} />;
+      page = user
+        ? <StaticPrototypePage page="profile" user={user} onNavigate={handleNavigate} />
+        : <AuthPage mode="login" onNavigate={handleNavigate} />;
       break;
     case "/search":
       page = <StaticPrototypePage key={fullPath} page="search" user={user} onNavigate={handleNavigate} />;
       break;
     default:
-      page = <StaticPrototypePage page="home" user={user} onNavigate={handleNavigate} />;
+      page = path.startsWith("/stories/")
+        ? <StoryViewerPage storyId={path.split("/")[2]} />
+        : <StaticPrototypePage page="home" user={user} onNavigate={handleNavigate} />;
   }
 
   return page;

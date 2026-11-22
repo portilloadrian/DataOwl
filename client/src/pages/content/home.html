@@ -440,13 +440,16 @@
     <input type="file" id="file-upload" hidden>
 
     <label for="file-upload" class="upload-content">
-          <img
-            src="assets/upload icon.png"
-            alt=""
-            class="upload-icon"
-        >
-        <h3>Drop your files here</h3>
-        <p>or browse your computer</p>
+        <div class="story-creation-visual" aria-hidden="true">
+            <div class="story-creation-card story-creation-card--back"></div>
+            <div class="story-creation-card story-creation-card--front">
+                <div class="story-creation-card__line"></div>
+                <div class="story-creation-bars"><i></i><i></i><i></i><i></i></div>
+            </div>
+            <span class="story-creation-plus">+</span>
+        </div>
+        <h3>Create your own story</h3>
+        <p>Start with a dataset and turn it into something worth exploring.</p>
 
         <span class="upload-button">Choose file</span>
     </label>

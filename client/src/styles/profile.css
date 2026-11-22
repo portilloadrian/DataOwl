@@ -122,7 +122,7 @@ button {
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-button:hover {
+.profile-page button:hover {
     background-color: #D6A64F;
     border-color: #D6A64F;
     color: #20252B;
@@ -211,13 +211,25 @@ button:hover {
     color: #20252B;
 }
 
+.profile-page .navigation {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.profile-page .navigation .search-combobox {
+    flex: 0 1 320px;
+    min-width: 220px;
+}
+
 a {
     color: #6F8FA3;
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
-a:hover {
+.profile-page a:hover {
     color: #E8755F;
 }
 

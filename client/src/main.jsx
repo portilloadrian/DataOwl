@@ -8,6 +8,7 @@ import "./styles/search-results.css";
 import "./styles/auth.css";
 import "./styles/discover.css";
 import "./styles/story-editor.css";
+import "./styles/scroll-reveal.css";
 import "./styles/profile.css";
 
 createRoot(document.getElementById("root")).render(

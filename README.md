@@ -12,14 +12,26 @@ The React/Vite client is now the active frontend. Supabase Auth is connected to 
 
 See [`docs/development-setup.md`](docs/development-setup.md) for the full contributor setup, including Supabase configuration and database migrations.
 
+### Requirements
+
+- Node.js 20 or newer
+- npm
+- Git
+- A modern browser
+- A Supabase project with permission to run SQL migrations
+
 From `CS2250-Project/`:
 
 ```powershell
-npm install
-npm run dev --workspace client
+npm.cmd install
+npm.cmd run dev --workspace client
 ```
 
 The client requires `client/.env.local` with `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY`. Copy [`client/.env.example`](client/.env.example) to create the template.
+
+If PowerShell blocks `npm.ps1`, use `npm.cmd` as shown above.
+
+Open `http://localhost:5173` after Vite starts. The public editor prototype is available at `/stories/new/preview`.
 
 ## Repository structure
 
@@ -136,5 +148,6 @@ More collaboration guidance is available in [`CONTRIBUTING.md`](CONTRIBUTING.md)
 ## Current limitations
 
 - The Express API is not implemented yet; the current client uses Supabase Auth directly.
-- Story drafts and chart processing are not persisted yet.
-- Automated tests and server-side authorization are still planned work.
+- Story titles, processed datasets, ordered blocks, and published stories persist to Supabase.
+- Automated tests are not wired up yet; use the manual verification checklist in [`docs/development-setup.md`](docs/development-setup.md).
+- Server-side authorization is planned after the Express API is implemented.

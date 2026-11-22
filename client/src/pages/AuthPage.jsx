@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BrandMark } from "../components/BrandMark.jsx";
+import { PersistentSiteNav } from "../components/PersistentSiteNav.jsx";
 import { supabase } from "../lib/supabaseClient.js";
 
 const profileIcons = ["noun_Owl_7392195.svg", "noun_Owl_7417114.svg", "noun_Owl_7562088.svg", "noun_Owl_7834524.svg"];
@@ -10,6 +11,7 @@ export function AuthPage({ mode, onNavigate }) {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [notice, setNotice] = useState("");
+  useEffect(() => { setError(""); setNotice(""); }, [mode]);
   function update(event) { setValues((current) => ({ ...current, [event.target.name]: event.target.value })); }
   async function submit(event) {
     event.preventDefault();
@@ -27,7 +29,7 @@ export function AuthPage({ mode, onNavigate }) {
     onNavigate("/");
   }
   return <>
-    <header className="auth-header"><BrandMark onNavigate={onNavigate} className="auth-brand" /><a className="header-link" href={isSignup ? "/login" : "/signup"} onClick={(event) => { event.preventDefault(); onNavigate(isSignup ? "/login" : "/signup"); }}>{isSignup ? "Log in" : "Create an account"}</a></header>
+    <header className="auth-header"><BrandMark onNavigate={onNavigate} className="auth-brand" /><PersistentSiteNav onNavigate={onNavigate} /><a className="header-link" href={isSignup ? "/login" : "/signup"} onClick={(event) => { event.preventDefault(); onNavigate(isSignup ? "/login" : "/signup"); }}>{isSignup ? "Log in" : "Create an account"}</a></header>
     <main className="auth-main"><section className="auth-card" aria-labelledby="auth-title"><h1 id="auth-title">{isSignup ? "Create your account" : "Welcome back"}</h1><p className="auth-intro">{isSignup ? "Join DataOwls to create and share your data stories." : "Log in to continue exploring and sharing data stories."}</p><form className="auth-form" onSubmit={submit}>
       {isSignup && <><label htmlFor="username">Username</label><input id="username" name="username" value={values.username} onChange={update} required /></>}
       <label htmlFor="email">Email</label><input id="email" name="email" type="email" autoComplete="email" value={values.email} onChange={update} required />

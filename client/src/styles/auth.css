@@ -24,6 +24,8 @@ body {
     border-bottom: 1px solid var(--secondary-color);
 }
 
+.persistent-site-nav{display:flex;align-items:center;gap:18px}.persistent-site-nav>a{color:var(--text);font-weight:700;text-decoration:none}.persistent-search{display:flex;align-items:center;gap:6px;width:min(360px,32vw);padding:7px 10px;border:1px solid var(--secondary-color);border-radius:999px;background:var(--surface);color:var(--muted-color)}.persistent-search input{width:100%;border:0;outline:0;background:transparent;color:var(--text);font:inherit}.story-reader-header{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px 32px;border-bottom:1px solid rgba(111,143,163,.25);background:var(--surface)}
+
 .auth-brand {
     display: inline-flex;
     align-items: center;

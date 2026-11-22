@@ -179,6 +179,51 @@ body {
     filter: brightness(0.92);
 }
 
+.auth-acts .create-story-link {
+    display: grid;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: var(--surface);
+    font-size: 27px;
+    line-height: 1;
+    font-weight: 400;
+}
+
+.auth-acts .create-story-link:hover {
+    color: var(--surface);
+    filter: brightness(.92);
+}
+
+.navigation .create-story-link {
+    display: grid;
+    width: 36px;
+    height: 36px;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: var(--surface);
+    font-size: 25px;
+    line-height: 1;
+    text-decoration: none;
+}
+
+.navigation .create-story-link:hover { color: var(--surface); filter: brightness(.92); }
+
+.auth-acts .signout-button {
+    border: 0;
+    background: transparent;
+    color: var(--muted-color);
+    cursor: pointer;
+    font: inherit;
+    font-size: .88rem;
+}
+
+.auth-acts .signout-button:hover { color: var(--primary-color); }
+
 /* Neutral circular profile control with a standard user outline. */
 .auth-acts .profile-link {
     display: grid;
@@ -466,8 +511,8 @@ body {
     max-width: 850px;
     margin: 25px auto 0;
     padding: 35px;
-    background-color: #E5EFE8;
-    border: 1px solid #C5D9CB;
+    background-color: #FFF8F5;
+    border: 1px solid #F0DDD5;
     border-radius: 30px;
 }
 
@@ -871,6 +916,31 @@ body {
 .upload-box:hover .upload-button {
     background-color: #D9634E;
 }
+
+.story-creation-visual {
+    position: relative;
+    width: 128px;
+    height: 92px;
+    margin: 0 auto 18px;
+}
+
+.story-creation-card {
+    position: absolute;
+    width: 78px;
+    height: 60px;
+    border: 2px solid var(--secondary-color);
+    border-radius: 8px;
+    background: var(--surface);
+    box-shadow: 0 7px 0 rgba(111, 143, 163, .12);
+}
+
+.story-creation-card--back { left: 12px; top: 8px; transform: rotate(-8deg); opacity: .65; }
+.story-creation-card--front { left: 37px; top: 20px; transform: rotate(7deg); border-color: var(--primary-color); }
+.story-creation-card__line { width: 35px; height: 5px; margin: 12px 0 9px 12px; border-radius: 5px; background: var(--secondary-color); }
+.story-creation-bars { display: flex; align-items: end; gap: 4px; height: 24px; margin-left: 12px; }
+.story-creation-bars i { display: block; width: 8px; border-radius: 3px 3px 0 0; background: var(--primary-color); }
+.story-creation-bars i:nth-child(1) { height: 10px; }.story-creation-bars i:nth-child(2) { height: 18px; }.story-creation-bars i:nth-child(3) { height: 14px; }.story-creation-bars i:nth-child(4) { height: 23px; }
+.story-creation-plus { position: absolute; right: 4px; bottom: 0; display: grid; width: 30px; height: 30px; place-items: center; border-radius: 50%; background: var(--highlight-color); color: var(--surface); font-size: 25px; font-weight: 500; box-shadow: 0 4px 10px rgba(32,37,43,.16); }
 
 @media (max-width: 760px) {
     .hero-intro {
