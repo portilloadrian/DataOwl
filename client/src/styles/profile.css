@@ -73,12 +73,36 @@ body {
 }
 
 .box-two {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
     text-align: left;
-    color: #20252B;
 }
 
 .box-two p {
-    margin: 8px 0;
+    margin: 0;
+}
+
+.bio-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    width: 100%;
+    max-width: 350px;
+    margin: 20px auto 0;
+}
+
+.bio-container input {
+    width: 100%;
+}
+
+.role-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
 }
 
 .profilePic {
@@ -89,7 +113,8 @@ body {
     border: 3px solid #6F8FA3;
 }
 
-.profile-info input {
+.profile-info input,
+.profile-info select {
     padding: 10px;
     margin: 10px;
     border: 1px solid #6F8FA3;
@@ -101,7 +126,8 @@ body {
     box-sizing: border-box;
 }
 
-.profile-info input:focus {
+.profile-info input:focus,
+.profile-info select:focus {
     outline: 2px solid #E8755F;
     outline-offset: 2px;
 }
@@ -274,4 +300,58 @@ a {
         width: 75px;
         height: 75px;
     }
+}
+
+.side-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+}
+
+.box-two {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.username-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.username-row p,
+.box-two > p {
+    margin: 0;
+}
+
+.bio-container,
+.role-container {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.box-one {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.profilePic {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+#owl-selection {
+    width: 120px;
+    padding: 6px 8px;
+    border-radius: 6px;
+    cursor: pointer;
 }
