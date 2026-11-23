@@ -156,6 +156,37 @@ export function StaticPrototypePage({ page, user, onNavigate }) {
 
     if (!container) return undefined;
     const cleanups = [];
+
+    // Profile Picture Dropdown
+    const owlSelection = container.querySelector("#owl-selection");
+    const profilePic = container.querySelector("#profilePic");
+
+    // Available owl images
+    const owlImages = {
+        owl1: icon7392195,
+        owl2: icon7417114,
+        owl3: icon7562088,
+        owl4: icon7834524,
+        owl5: owlMark
+    };
+
+    // Handle dropdown selection
+    const handleOwlChange = (event) => {
+        const selectedOwl = event.target.value;
+
+        if (owlImages[selectedOwl] && profilePic) {
+            profilePic.src = owlImages[selectedOwl];
+        }
+    };
+
+    // Listen for dropdown changes
+    owlSelection?.addEventListener("change", handleOwlChange);
+
+    // Cleanup event listener
+    cleanups.push(() => {
+        owlSelection?.removeEventListener("change", handleOwlChange);
+    });
+
     const search = container.querySelector(".search-combobox");
     const input = container.querySelector(".search-input");
 
