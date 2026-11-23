@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { StoryViewer } from "../components/StoryViewer.jsx";
 import { BrandMark } from "../components/BrandMark.jsx";
 import { PersistentSiteNav } from "../components/PersistentSiteNav.jsx";
+import { LikeButton } from "../components/LikeButton.jsx";
 import { supabase } from "../lib/supabaseClient.js";
 
 function mapBlock(block) { return { id: block.id, type: block.block_type, title: block.content?.title ?? "", body: block.content?.body ?? "", chartType: block.content?.chartType ?? "bar", xColumn: block.content?.xColumn ?? "", yColumn: block.content?.yColumn ?? "", steps: block.content?.steps ?? [] }; }
@@ -27,5 +28,5 @@ export function StoryViewerPage({ storyId }) {
   }, [storyId]);
   if (state.loading) return <div className="auth-loading">Loading story...</div>;
   if (state.error) return <main className="story-auth-gate"><h1>Story unavailable</h1><p>{state.error}</p></main>;
-  return <><header className="story-reader-header"><BrandMark /><PersistentSiteNav onNavigate={(path) => { window.history.pushState({}, "", path); window.dispatchEvent(new PopStateEvent("popstate")); }} /></header><StoryViewer title={state.story.title} blocks={state.blocks} dataset={state.dataset} /></>;
+  return <><header className="story-reader-header"><BrandMark /><PersistentSiteNav onNavigate={(path) => { window.history.pushState({}, "", path); window.dispatchEvent(new PopStateEvent("popstate")); }} /></header><StoryViewer title={state.story.title} blocks={state.blocks} dataset={state.dataset} /><div className="story-viewer-actions"><LikeButton storyId={storyId} /></div></>;
 }
