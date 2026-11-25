@@ -402,3 +402,6 @@ body {
         padding: 18px;
     }
 }
+
+/* Real stories on Discover are links */
+a.story-card--link { color: inherit; text-decoration: none; }
