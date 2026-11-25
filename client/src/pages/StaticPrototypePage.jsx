@@ -142,6 +142,33 @@ function applyRecentlyViewed(container) {
   });
 }
 
+// Published stories for Discover (rendered with textContent: titles are user input).
+async function loadPublishedStories() {
+  const { data, error } = await supabase.from("stories").select("id, title, description, story_topics(topics(name))").eq("status", "published").order("published_at", { ascending: false }).limit(12);
+  return error ? [] : data ?? [];
+}
+
+function storyCard(story) {
+  const names = (story.story_topics ?? []).map((row) => row.topics?.name).filter(Boolean);
+  const link = document.createElement("a");
+  link.href = `/stories/${story.id}`;
+  link.className = "story-card story-card--link";
+  link.dataset.topics = names.map((name) => name.toLowerCase()).join(",");
+  const body = document.createElement("div");
+  body.className = "story-card__body";
+  const category = document.createElement("span");
+  category.className = "story-category";
+  category.textContent = (names[0] ?? "Story").toUpperCase();
+  const title = document.createElement("h3");
+  title.textContent = story.title;
+  const summary = document.createElement("p");
+  summary.className = "story-summary";
+  summary.textContent = story.description ?? "";
+  body.append(category, title, summary);
+  link.append(body);
+  return link;
+}
+
 export function StaticPrototypePage({ page, user, onNavigate }) {
   const markup = useMemo(() => rewriteMarkup(markupByPage[page], user), [page, user]);
   const containerRef = useRef(null);
@@ -232,14 +259,22 @@ export function StaticPrototypePage({ page, user, onNavigate }) {
 
     if (page === "discover") {
       const topics = [...container.querySelectorAll(".topic-list li")];
-      const cards = [...container.querySelectorAll(".story-card")];
+      // sample cards match on their text; real stories carry data-topics from story_topics
+      const matches = (card, topic) => card.dataset.topics !== undefined ? card.dataset.topics.split(",").includes(topic) : card.textContent.toLowerCase().includes(topic);
       const filter = (event) => {
         const topic = event.currentTarget.textContent.trim().toLowerCase();
         topics.forEach((item) => item.classList.toggle("is-selected", item === event.currentTarget));
-        cards.forEach((card) => { card.hidden = topic !== "all" && !card.textContent.toLowerCase().includes(topic); });
+        container.querySelectorAll(".story-card").forEach((card) => { card.hidden = topic !== "all" && !matches(card, topic); });
       };
       topics.forEach((topic) => { topic.setAttribute("role", "button"); topic.tabIndex = 0; topic.addEventListener("click", filter); });
       cleanups.push(() => topics.forEach((topic) => topic.removeEventListener("click", filter)));
+
+      let active = true;
+      loadPublishedStories().then((stories) => {
+        const grid = container.querySelector(".story-grid");
+        if (active && grid) grid.prepend(...stories.map(storyCard));
+      });
+      cleanups.push(() => { active = false; });
     }
 
     if (page === "search") {
