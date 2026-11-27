@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { StoryViewer } from "../components/StoryViewer.jsx";
 import { BrandMark } from "../components/BrandMark.jsx";
 import { PersistentSiteNav } from "../components/PersistentSiteNav.jsx";
+import { recordViewed } from "../lib/recentlyViewed.js";
 import { supabase } from "../lib/supabaseClient.js";
 
 function mapBlock(block) { return { id: block.id, type: block.block_type, title: block.content?.title ?? "", body: block.content?.body ?? "", chartType: block.content?.chartType ?? "bar", xColumn: block.content?.xColumn ?? "", yColumn: block.content?.yColumn ?? "", steps: block.content?.steps ?? [] }; }
@@ -20,6 +21,7 @@ export function StoryViewerPage({ storyId }) {
       ]);
       if (!active) return;
       if (blocksError || datasetError) { setState({ loading: false, error: blocksError?.message ?? datasetError?.message ?? "Could not load this story.", story: null, blocks: [], dataset: null }); return; }
+      recordViewed({ id: story.id, title: story.title });
       setState({ loading: false, error: "", story, blocks: (blocks ?? []).map(mapBlock), dataset: dataset ? { name: dataset.source_filename, columns: dataset.columns ?? [], rows: dataset.processed_data?.rows ?? [], rowCount: dataset.row_count ?? 0 } : null });
     }
     load();

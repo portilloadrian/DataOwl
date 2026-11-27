@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef } from "react";
 import { supabase } from "../lib/supabaseClient.js";
+import { getRecentlyViewed, recordViewed } from "../lib/recentlyViewed.js";
 import homeMarkup from "./content/home.html?raw";
 import discoverMarkup from "./content/discover.html?raw";
 import loginMarkup from "./content/login.html?raw";
@@ -34,7 +35,6 @@ const markupByPage = {
 };
 
 const recentSearchesKey = "dataowls-recent-searches";
-const recentlyViewedKey = "dataowls-recently-viewed";
 const persistentSearchMarkup = `<div class="search-combobox" id="searchCombobox"><div class="search-input-wrapper"><svg class="search-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg><input type="text" class="search-input" placeholder="Search datasets, people, or posts..." aria-label="Search" aria-expanded="false" aria-controls="searchDropdown" /></div><div class="search-dropdown" id="searchDropdown" role="listbox"><div class="dropdown-header"><span class="header-title">Recent</span><button type="button" class="clear-btn">Clear all</button></div><div class="recent-people-row"></div><ul class="query-list recent-queries"></ul><div class="dropdown-header section-divider"><span class="header-title">Try searching for</span></div><ul class="query-list suggested-queries"><li class="query-item"><span class="query-text">usa gdp 2024</span></li><li class="query-item"><span class="query-text">climate trends dataset</span></li><li class="query-item"><span class="query-text">college tuition over time</span></li><li class="query-item"><span class="query-text">favorite foods survey</span></li></ul></div></div>`;
 
 function rewriteMarkup(markup, user) {
@@ -121,7 +121,7 @@ function applyRecentlyViewed(container) {
   const list = container.querySelector(".history-list");
   if (!list) return;
   list.replaceChildren();
-  const items = readList(recentlyViewedKey);
+  const items = getRecentlyViewed();
   if (!items.length) {
     const empty = document.createElement("li");
     empty.className = "history-empty";
@@ -129,15 +129,22 @@ function applyRecentlyViewed(container) {
     list.append(empty);
     return;
   }
-  items.slice(0, 5).forEach((item) => {
+  items.forEach((item) => {
     const row = document.createElement("li");
+    const link = document.createElement("a");
+    // real stories have an id; sample cards just point back at the featured list
+    link.href = item.id ? `/stories/${encodeURIComponent(item.id)}` : "/#featured-stories";
     const title = document.createElement("span");
     title.className = "history-post";
     title.textContent = item.title;
-    const user = document.createElement("span");
-    user.className = "history-user";
-    user.textContent = item.user;
-    row.append(title, user);
+    link.append(title);
+    if (item.user) {
+      const user = document.createElement("span");
+      user.className = "history-user";
+      user.textContent = item.user;
+      link.append(user);
+    }
+    row.append(link);
     list.append(row);
   });
 }
@@ -234,18 +241,18 @@ export function StaticPrototypePage({ page, user, onNavigate }) {
       });
     }
 
-    const recordViewed = (event) => {
+    const recordClick = (event) => {
       const item = event.target.closest(".post, .story-card");
-      if (!item) return;
-      const title = item.querySelector(".post-title, .story-card__title")?.textContent.trim();
+      // real story cards are recorded by the story viewer, which knows the id
+      if (!item || item.matches(".story-card--link")) return;
+      const title = item.querySelector(".post-title, .story-card__title, h3")?.textContent.trim();
       if (!title) return;
-      const username = item.querySelector(".username, .creator")?.textContent.trim() ?? "DataOwls";
-      const next = [{ title, user: username }, ...readList(recentlyViewedKey).filter((entry) => entry.title !== title)].slice(0, 5);
-      localStorage.setItem(recentlyViewedKey, JSON.stringify(next));
+      const username = item.querySelector(".username, .creator")?.lastChild?.textContent.trim() || "DataOwls";
+      recordViewed({ title, user: username });
       applyRecentlyViewed(container);
     };
-    container.addEventListener("click", recordViewed);
-    cleanups.push(() => container.removeEventListener("click", recordViewed));
+    container.addEventListener("click", recordClick);
+    cleanups.push(() => container.removeEventListener("click", recordClick));
 
     const signout = container.querySelector(".signout-button");
     const signOut = () => supabase.auth.signOut();
