@@ -59,3 +59,34 @@
     --font-body: "DM Sans", sans-serif;
     --font-editorial: "Fraunces", serif;
 }
+
+.tooltip {
+    position: relative;
+}
+
+.tooltip-text {
+    visibility: hidden;
+    opacity: 0;
+
+    position: absolute;
+    bottom: -45px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    background-color: #20252B;
+    color: #F7F4ED;
+
+    padding: 8px 12px;
+    border-radius: 6px;
+
+    font-size: 12px;
+    white-space: nowrap;
+
+    transition: opacity 0.2s ease;
+    z-index: 10;
+}
+
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 0.75;
+}
