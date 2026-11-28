@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useRef } from "react";
+import { createRoot } from "react-dom/client";
 import { supabase } from "../lib/supabaseClient.js";
+import StoryChart from "../components/StoryChart";
 import homeMarkup from "./content/home.html?raw";
 import discoverMarkup from "./content/discover.html?raw";
 import loginMarkup from "./content/login.html?raw";
@@ -146,10 +148,119 @@ export function StaticPrototypePage({ page, user, onNavigate }) {
   const markup = useMemo(() => rewriteMarkup(markupByPage[page], user), [page, user]);
   const containerRef = useRef(null);
 
-  useEffect(() => {
-    document.body.classList.toggle("profile-page", page === "profile");
-    return () => document.body.classList.remove("profile-page");
-  }, [page]);
+    
+useEffect(() => {
+  if (page !== "home") return;
+
+  let chartRoot = null;
+  let cancelled = false;
+
+  async function loadFeaturedStory() {
+    const { data: stories, error: storyError } = await supabase
+      .from("stories")
+      .select("id, title, status, author_id")
+      .eq("status", "published")
+      .eq("id", "27264d1f-56eb-45e8-b25a-99ca6540a54c")
+      .limit(1);
+
+    if (storyError) {
+      console.error("Story lookup failed:", storyError.message);
+      return;
+    }
+
+    if (!stories?.length || cancelled) return;
+
+    const story = stories[0];
+
+    const { data: blocks, error: blocksError } = await supabase
+      .from("story_blocks")
+      .select("id, story_id, position, block_type, content")
+      .eq("story_id", story.id)
+      .order("position");
+
+    if (blocksError) {
+      console.error("Story blocks lookup failed:", blocksError.message);
+      return;
+    }
+
+    const chartBlock = blocks?.find(
+      (block) => block.block_type === "chart"
+    );
+
+    if (!chartBlock) {
+      console.error("No chart block found for this story.");
+      return;
+    }
+
+    const { data: datasets, error: datasetsError } = await supabase
+      .from("story_datasets")
+      .select("id, story_id, source_filename, processed_data")
+      .eq("story_id", story.id);
+
+    if (datasetsError) {
+      console.error("Dataset lookup failed:", datasetsError.message);
+      return;
+    }
+
+    const rows = datasets?.[0]?.processed_data?.rows;
+
+    if (!rows?.length || cancelled) {
+      console.error("No dataset rows found.");
+      return;
+    }
+
+    const firstPost = containerRef.current?.querySelector(
+      "#featured-stories .post"
+    );
+
+    if (!firstPost) return;
+
+    const usernameElement = firstPost.querySelector(".username");
+    const titleElement = firstPost.querySelector(".post-title");
+    const chartElement = firstPost.querySelector("#car-price-chart");
+
+    if (titleElement) {
+      titleElement.textContent = story.title;
+    }
+
+    if (usernameElement) {
+      const { data: author, error: authorError } = await supabase
+        .from("profiles")
+        .select("username")
+        .eq("id", story.author_id)
+        .single();
+
+      if (!authorError && author) {
+        usernameElement.textContent = `@${author.username}`;
+      }
+    }
+
+    if (chartElement && !cancelled) {
+      chartRoot = createRoot(chartElement);
+
+      chartRoot.render(
+        <StoryChart
+          chartConfig={chartBlock.content}
+          rows={rows}
+        />
+      );
+    }
+
+    console.log("Featured story chart loaded successfully!");
+  }
+
+  loadFeaturedStory();
+
+  return () => {
+    cancelled = true;
+    chartRoot?.unmount();
+  };
+}, [page]);
+
+useEffect(() => {
+  document.body.classList.toggle("profile-page", page === "profile");
+  return () => document.body.classList.remove("profile-page");
+}, [page]);
 
   useEffect(() => {
     const container = containerRef.current;
