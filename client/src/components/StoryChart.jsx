@@ -11,7 +11,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-export default function StoryChart({ chartConfig, rows }) {
+export default function StoryChart({ chartConfig, rows, preview = false }) {
   if (!chartConfig || !rows || rows.length === 0) {
     return <p>No chart data available.</p>;
   }
@@ -34,7 +34,7 @@ export default function StoryChart({ chartConfig, rows }) {
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />
               <YAxis />
-              <Tooltip />
+              {!preview && <Tooltip />}
               <Line
                 type="monotone"
                 dataKey="value"
@@ -47,7 +47,7 @@ export default function StoryChart({ chartConfig, rows }) {
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />
               <YAxis />
-              <Tooltip />
+              {!preview && <Tooltip />}
               <Bar dataKey="value" fill="#8884d8" />
             </BarChart>
           )}

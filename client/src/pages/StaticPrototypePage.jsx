@@ -144,7 +144,7 @@ function applyRecentlyViewed(container) {
   });
 }
 
-export function StaticPrototypePage({ page, user, onNavigate }) {
+export function StaticPrototypePage({ page, user, profileId, onNavigate }) {
   const markup = useMemo(() => rewriteMarkup(markupByPage[page], user), [page, user]);
   const containerRef = useRef(null);
 
@@ -152,13 +152,15 @@ export function StaticPrototypePage({ page, user, onNavigate }) {
 useEffect(() => {
   if (page !== "home") return;
 
-  let chartRoot = null;
-  let cancelled = false;
+let chartRoot = null;
+let featuredPost = null;
+let openFeaturedStory = null;
+let cancelled = false;
 
   async function loadFeaturedStory() {
     const { data: stories, error: storyError } = await supabase
       .from("stories")
-      .select("id, title, status, author_id")
+      .select("id, title, status, author_id, view_count")
       .eq("status", "published")
       .eq("id", "27264d1f-56eb-45e8-b25a-99ca6540a54c")
       .limit(1);
@@ -171,6 +173,15 @@ useEffect(() => {
     if (!stories?.length || cancelled) return;
 
     const story = stories[0];
+
+    const { count: likeCount, error: likesError } = await supabase
+  .from("story_likes")
+  .select("*", { count: "exact", head: true })
+  .eq("story_id", story.id);
+
+if (likesError) {
+  console.error("Likes lookup failed:", likesError.message);
+}
 
     const { data: blocks, error: blocksError } = await supabase
       .from("story_blocks")
@@ -213,7 +224,39 @@ useEffect(() => {
       "#featured-stories .post"
     );
 
+    const viewCountElement = firstPost?.querySelector("#featured-view-count");
+const likeCountElement = firstPost?.querySelector("#featured-like-count");
+
+if (viewCountElement) {
+  viewCountElement.textContent = (story.view_count ?? 0).toLocaleString();
+}
+
+if (likeCountElement) {
+  likeCountElement.textContent = (likeCount ?? 0).toLocaleString();
+}
+
     if (!firstPost) return;
+
+    featuredPost = firstPost;
+firstPost.style.cursor = "pointer";
+
+openFeaturedStory = async (event) => {
+  if (event.target.closest("button, a, .username")) return;
+
+  const { error } = await supabase.rpc(
+    "increment_story_view",
+    { story_uuid: story.id }
+  );
+
+  if (error) {
+    console.error("View count update failed:", error.message);
+    return;
+  }
+
+  onNavigate(`/stories/${story.id}`);
+};
+
+firstPost.addEventListener("click", openFeaturedStory);
 
     const usernameElement = firstPost.querySelector(".username");
     const titleElement = firstPost.querySelector(".post-title");
@@ -223,17 +266,22 @@ useEffect(() => {
       titleElement.textContent = story.title;
     }
 
-    if (usernameElement) {
-      const { data: author, error: authorError } = await supabase
-        .from("profiles")
-        .select("username")
-        .eq("id", story.author_id)
-        .single();
+   if (usernameElement) {
+  const { data: author, error: authorError } = await supabase
+    .from("profiles")
+    .select("username")
+    .eq("id", story.author_id)
+    .single();
 
-      if (!authorError && author) {
-        usernameElement.textContent = `@${author.username}`;
-      }
-    }
+  if (!authorError && author) {
+    const authorLink = document.createElement("a");
+    authorLink.className = usernameElement.className;
+    authorLink.href = `/profile/${story.author_id}`;
+    authorLink.textContent = author.username;
+
+    usernameElement.replaceWith(authorLink);
+  }
+}
 
     if (chartElement && !cancelled) {
       chartRoot = createRoot(chartElement);
@@ -251,11 +299,61 @@ useEffect(() => {
 
   loadFeaturedStory();
 
+return () => {
+  cancelled = true;
+
+  if (featuredPost && openFeaturedStory) {
+    featuredPost.removeEventListener("click", openFeaturedStory);
+  }
+
+  chartRoot?.unmount();
+};
+}, [page]);
+
+useEffect(() => {
+  if (page !== "profile") return;
+
+  let cancelled = false;
+
+  async function loadProfile() {
+    const targetProfileId = profileId ?? user?.id;
+
+    if (!targetProfileId) return;
+
+    const { data: profile, error } = await supabase
+      .from("profiles")
+      .select("username")
+      .eq("id", targetProfileId)
+      .single();
+
+    if (cancelled) return;
+
+    if (error) {
+      console.error("Profile lookup failed:", error.message);
+      return;
+    }
+
+    const container = containerRef.current;
+    if (!container) return;
+
+    const usernameElement = container.querySelector(".profile-username");
+    const editButton = container.querySelector(".profile-info button");
+
+    if (usernameElement) {
+      usernameElement.textContent = profile.username;
+    }
+
+    if (editButton) {
+      editButton.hidden = !user || user.id !== targetProfileId;
+    }
+  }
+
+  loadProfile();
+
   return () => {
     cancelled = true;
-    chartRoot?.unmount();
   };
-}, [page]);
+}, [page, profileId, user]);
 
 useEffect(() => {
   document.body.classList.toggle("profile-page", page === "profile");
