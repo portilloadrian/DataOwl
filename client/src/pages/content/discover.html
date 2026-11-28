@@ -12,7 +12,7 @@
     <!-- Shared site header keeps navigation consistent across pages. -->
     <header class="site-header">
         <div class="site-header__inner">
-            <a class="title discover-brand" href="../index.html" aria-label="DataOwls home">
+            <a class="title discover-brand tooltip" href="../index.html" aria-label="DataOwls home">
                 <img src="../assets/owl-d.png" alt="D" class="logo-owl">
                 <span class="logo-letter">a</span>
                 <span class="logo-letter">t</span>
@@ -21,21 +21,30 @@
                 <span class="logo-letter">w</span>
                 <span class="logo-letter">l</span>
                 <span class="logo-letter">s</span>
+
+                <span class="tooltip-text">Go To Homepage</span>
             </a>
 
             <nav class="navigation" aria-label="Main navigation">
                 <a href="../index.html#featured-stories">Explore Stories</a>
-                <a class="is-current" href="discover.html" aria-current="page">Discover</a>
+                <a class="is-current tooltip" href="discover.html" aria-current="page">Discover
+                    <span class="tooltip-text">You're On Discover!</span>
+                </a>
             </nav>
 
             <div class="auth-acts" aria-label="Account actions">
-                <a class="login-button" href="login.html">Login</a>
-                <a class="signup-button" href="signup.html">Sign Up</a>
-                <a class="profile-link" href="profile.html" aria-label="View profile" title="Profile">
+                <a class="login-button tooltip" href="login.html">Login
+                    <span class="tooltip-text">Go To Login</span>
+                </a>
+                <a class="signup-button tooltip" href="signup.html">Sign Up
+                    <span class="tooltip-text">Create An Account</span>
+                </a>
+                <a class="profile-link tooltip" href="profile.html" aria-label="View profile">
                     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                         <circle cx="12" cy="8" r="3.5"></circle>
                         <path d="M5.5 20a6.5 6.5 0 0 1 13 0"></path>
                     </svg>
+                    <span class="tooltip-text">Go to Profile</span>
                 </a>
             </div>
         </div>
