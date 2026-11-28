@@ -70,6 +70,17 @@ export default function App() {
         ? <StaticPrototypePage page="profile" user={user} onNavigate={handleNavigate} />
         : <AuthPage mode="login" onNavigate={handleNavigate} />;
       break;
+    case path.startsWith("/profile/") ? path : "":
+  const profileId = path.split("/")[2];
+  page = profileId
+    ? <StaticPrototypePage
+        page="profile"
+        user={user}
+        profileId={profileId}
+        onNavigate={handleNavigate}
+      />
+    : <StaticPrototypePage page="home" user={user} onNavigate={handleNavigate} />;
+  break;
     case "/search":
       page = <StaticPrototypePage key={fullPath} page="search" user={user} onNavigate={handleNavigate} />;
       break;
