@@ -51,24 +51,42 @@
         <section class="profile-info">
 
             <div class="side-container">
+            <div class="box-one">
+                <img class="profilePic" id="profilePic" src="../assets/owl-d.png" alt="Profile Picture">
 
-                <div class="box-one">
-                    <img class="profilePic" src="../assets/dataowls-logo.jpg" alt="Profile Picture">
+                <select id="owl-selection" name="owl-selection">
+                    <option value="owl1">Owl 1</option>
+                    <option value="owl2">Owl 2</option>
+                    <option value="owl3">Owl 3</option>
+                    <option value="owl4">Owl 4</option>
+                </select>
+            </div>
+
+            <div class="box-two">
+
+                <p><strong>Username</strong></p>
+
+                <p>0 Followers | 0 Following</p>
+
+                <div class="role-container">
+                    <label for="custom-role">Role</label>
+
+                    <select id="custom-role" name="custom-role">
+                        <option value="Researcher">Researcher</option>
+                        <option value="Journalist">Journalist</option>
+                        <option value="Analyst">Analyst</option>
+                        <option value="Student">Student</option>
+                    </select>
                 </div>
-
-<div class="box-two">
-    <p><strong class="profile-username">Username</strong></p>
-    <p>0 Followers | 0 Following</p>
-</div>
 
             </div>
 
-<p class="profile-bio">(bio goes here)</p>
+        </div>
 
-            <label for="custom-role">Role</label>
-            <input type="text" id="custom-role" placeholder="Enter your role">
-
-            <button type="button">Edit Profile</button>
+        <div class="bio-container">
+            <label for="bio">Bio</label>
+            <input type="text" id="bio" name="bio" maxlength="160" placeholder="Write your bio..." aria-label="Bio">
+        </div>
 
         </section>
 
